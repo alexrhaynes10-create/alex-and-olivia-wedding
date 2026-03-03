@@ -6,7 +6,7 @@
   <title>Alex & Olivia — 3rd October 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -43,23 +43,26 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 3rem;
-      transition: background 0.4s;
+      transition: background 0.4s, border-color 0.4s;
+      background: rgba(186, 230, 253, 0.92);
+      border-bottom: 2px solid #7dd3fc;
     }
     nav.scrolled {
-      background: rgba(250,248,244,0.94);
+      background: rgba(186, 230, 253, 0.97);
       backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--line);
+      border-bottom: 2px solid #38bdf8;
     }
     .nav-logo {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.1rem;
-      font-weight: 400;
+      font-weight: 700;
       letter-spacing: 0.08em;
-      color: var(--cream);
+      color: #fff;
       text-decoration: none;
       transition: color 0.4s;
+      text-shadow: 0 1px 3px rgba(0,80,140,0.18);
     }
-    nav.scrolled .nav-logo { color: var(--dark); }
+    nav.scrolled .nav-logo { color: #fff; }
 
     .nav-links {
       display: flex;
@@ -68,14 +71,16 @@
     }
     .nav-links a {
       font-size: 0.7rem;
+      font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(245,240,232,0.85);
+      color: #fff;
       text-decoration: none;
       transition: color 0.3s;
+      text-shadow: 0 1px 3px rgba(0,80,140,0.15);
     }
-    nav.scrolled .nav-links a { color: var(--muted); }
-    .nav-links a:hover { color: var(--terracotta) !important; }
+    nav.scrolled .nav-links a { color: #fff; }
+    .nav-links a:hover { color: #f97316 !important; }
 
     /* ── HERO ── */
     .hero {
@@ -115,17 +120,25 @@
     }
     .hero-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.5rem, 8vw, 7rem);
-      font-weight: 300;
+      font-size: clamp(5rem, 11vw, 10rem);
+      font-weight: 700;
       line-height: 1.0;
-      color: var(--cream);
+      color: #f97316;
       margin-bottom: 1.5rem;
       opacity: 0;
       animation: fadeUp 1s 0.5s forwards;
     }
     .hero-title em {
       font-style: italic;
-      color: #e8c9a8;
+      color: #f472b6;
+    }
+    .hero-title .name-alex {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-style: normal;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #f97316;
     }
     .hero-meta {
       display: flex;
@@ -346,6 +359,14 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 2px;
     }
+    /* Last card spans full width if it's a lone item on final row */
+    .poi-card:last-child:nth-child(3n + 1) {
+      grid-column: 1 / -1;
+      max-height: 420px;
+    }
+    .poi-card:last-child:nth-child(3n + 1) img {
+      aspect-ratio: 16/7;
+    }
     .poi-card {
       position: relative;
       overflow: hidden;
@@ -534,10 +555,10 @@
   <div class="hero-bg" id="heroBg"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Together with their families</p>
-    <h1 class="hero-title">Alex<br>&amp; <em>Olivia</em></h1>
+    <h1 class="hero-title"><span class="name-alex">Alex</span><br>&amp; <em>Olivia</em></h1>
     <div class="hero-meta">
       <p class="hero-date">3rd October 2026 &nbsp;·&nbsp; 4pm until late</p>
-      <p class="hero-location">La Organica, Ronda, Andalucía</p>
+      <p class="hero-location"><a href="https://almazaralaorganic.com/en/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">La Organica, Ronda, Andalucía</a></p>
     </div>
   </div>
   <div class="hero-scroll">
@@ -571,12 +592,12 @@
           </div>
           <div class="detail-item">
             <small>Venue</small>
-            <span>La Organica, Ronda</span>
+            <span><a href="https://almazaralaorganic.com/en/" target="_blank" rel="noopener" style="color:var(--dark);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--terracotta);">La Organica, Ronda</a></span>
           </div>
         </div>
       </div>
       <div class="intro-image">
-        <img src="https://raw.githubusercontent.com/alexrhaynes10-create/alex-and-olivia-wedding/main/images/unnamed(12).jpg" alt="Alex and Olivia" />
+        <img src="https://raw.githubusercontent.com/alexrhaynes10-create/alex-and-olivia-wedding/main/images/cortijo_01.jpg" alt="La Organica, Ronda" />
       </div>
     </div>
   </div>
@@ -671,6 +692,15 @@
           <p class="poi-name">Parador de Ronda</p>
           <p class="poi-desc">Spectacularly positioned on the edge of the gorge, with views straight down the cliff face. The finest address in town.</p>
           <p class="poi-dist">· In town</p>
+        </div>
+      </div>
+      <div class="poi-card">
+        <img src="https://raw.githubusercontent.com/alexrhaynes10-create/alex-and-olivia-wedding/main/images/Liv_ronda.jpeg" alt="Olivia in Ronda" />
+        <div class="poi-overlay">
+          <p class="poi-type">A local's perspective</p>
+          <p class="poi-name">Ronda through our eyes</p>
+          <p class="poi-desc">We fell in love with this town long before we decided to get married here. Come explore it with us.</p>
+          <p class="poi-dist">· Our Ronda</p>
         </div>
       </div>
     </div>
@@ -769,12 +799,12 @@
 <footer>
   <div class="footer-brand">Alex <em>&amp;</em> Olivia</div>
   <div class="footer-info">
-    <p>3rd October 2026 · La Organica, Ronda, Spain</p>
-    <p>Questions? <a href="mailto:alexoliviawedding2026@gmail.com" class="footer-contact">alexoliviawedding2026@gmail.com</a></p>
+    <p>3rd October 2026 · <a href="https://almazaralaorganic.com/en/" target="_blank" rel="noopener" style="color:var(--terracotta);text-decoration:none;">La Organica, Ronda, Spain</a></p>
+    <p>Questions? <a href="/cdn-cgi/l/email-protection#a5c4c9c0ddcac9ccd3ccc4d2c0c1c1cccbc297959793e5c2c8c4ccc98bc6cac8" class="footer-contact"><span class="__cf_email__" data-cfemail="f49598918c9b989d829d95839190909d9a93c6c4c6c2b49399959d98da979b99">[email&#160;protected]</span></a></p>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Nav scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
@@ -811,12 +841,4 @@
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.intro-grid, .rsvp-inner, .poi-card, .faq-item').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(28px)';
-    el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-    observer.observe(el);
-  });
-</script>
-</body>
-</html>
+  document.querySelectorAl
