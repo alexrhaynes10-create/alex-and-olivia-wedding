@@ -95,13 +95,15 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(to bottom, rgba(44,40,32,0.1) 0%, rgba(44,40,32,0.6) 100%),
-        url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&auto=format&fit=crop&q=80') center/cover no-repeat;
+      background: #f0eeec;
       transform: scale(1.04);
       transition: transform 8s ease;
     }
     .hero:hover .hero-bg { transform: scale(1); }
+    /* Adjust text colours for light background */
+    .hero-eyebrow { color: var(--sage) !important; }
+    .hero-date { color: var(--muted) !important; }
+    .hero-location { color: var(--earth) !important; }
 
     .hero-content {
       position: relative;
@@ -137,7 +139,7 @@
       font-weight: 900;
       font-style: normal;
       letter-spacing: 0.04em;
-      text-transform: uppercase;
+      text-transform: none;
       color: #f97316;
     }
     .hero-meta {
@@ -168,7 +170,7 @@
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
-      color: rgba(245,240,232,0.6);
+      color: var(--muted);
       font-size: 0.6rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -178,7 +180,7 @@
     .scroll-line {
       width: 1px;
       height: 50px;
-      background: rgba(245,240,232,0.4);
+      background: var(--muted);
       animation: scrollPulse 2s 1.5s infinite;
     }
     @keyframes scrollPulse {
@@ -359,14 +361,24 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 2px;
     }
-    /* Last card spans full width if it's a lone item on final row */
-    .poi-card:last-child:nth-child(3n + 1) {
+    .poi-card-hero {
       grid-column: 1 / -1;
-      max-height: 420px;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
     }
-    .poi-card:last-child:nth-child(3n + 1) img {
-      aspect-ratio: 16/7;
+    .poi-card-hero img {
+      width: 100%;
+      height: auto;
+      max-height: 70vh;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      background: #1a1a1a;
+      filter: brightness(0.92) saturate(0.95);
+      transition: filter 0.4s ease;
     }
+    .poi-card-hero:hover img { filter: brightness(0.78) saturate(0.95); }
     .poi-card {
       position: relative;
       overflow: hidden;
@@ -374,7 +386,7 @@
     }
     .poi-card img {
       width: 100%;
-      aspect-ratio: 4/5;
+      aspect-ratio: 3/4;
       object-fit: cover;
       display: block;
       transition: transform 0.6s ease, filter 0.4s ease;
@@ -637,9 +649,18 @@
     <div class="poi-header">
       <p class="section-label" style="justify-content:center;">Discover the region</p>
       <h2>Exploring Ronda</h2>
-      <p>Perched above a dramatic gorge in the mountains, Ronda is one of Spain's most extraordinary towns. Here are our favourite spots to make a proper trip of it.</p>
+      <p>Perched above a dramatic gorge in the Andalusian mountains, Ronda is one of Spain's most extraordinary towns. Here are our favourite spots to make a proper trip of it.</p>
     </div>
     <div class="poi-grid">
+      <div class="poi-card-hero">
+        <img src="https://raw.githubusercontent.com/alexrhaynes10-create/alex-and-olivia-wedding/main/images/Liv_ronda.jpeg" alt="Olivia in Ronda" />
+        <div class="poi-overlay">
+          <p class="poi-type">A local's perspective</p>
+          <p class="poi-name">Ronda through our eyes</p>
+          <p class="poi-desc">We fell in love with this town long before we decided to get married here. Come explore it with us.</p>
+          <p class="poi-dist">· Our Ronda</p>
+        </div>
+      </div>
       <div class="poi-card">
         <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop&q=80" alt="Puente Nuevo" />
         <div class="poi-overlay">
@@ -692,15 +713,6 @@
           <p class="poi-name">Parador de Ronda</p>
           <p class="poi-desc">Spectacularly positioned on the edge of the gorge, with views straight down the cliff face. The finest address in town.</p>
           <p class="poi-dist">· In town</p>
-        </div>
-      </div>
-      <div class="poi-card">
-        <img src="https://raw.githubusercontent.com/alexrhaynes10-create/alex-and-olivia-wedding/main/images/Liv_ronda.jpeg" alt="Olivia in Ronda" />
-        <div class="poi-overlay">
-          <p class="poi-type">A local's perspective</p>
-          <p class="poi-name">Ronda through our eyes</p>
-          <p class="poi-desc">We fell in love with this town long before we decided to get married here. Come explore it with us.</p>
-          <p class="poi-dist">· Our Ronda</p>
         </div>
       </div>
     </div>
@@ -841,4 +853,12 @@
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAl
+  document.querySelectorAll('.intro-grid, .rsvp-inner, .poi-card, .poi-card-hero, .faq-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
