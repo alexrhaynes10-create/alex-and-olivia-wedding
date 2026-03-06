@@ -6,7 +6,7 @@
   <title>Alex & Olivia — 3rd October 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -20,6 +20,9 @@
       --dark: #2c2820;
       --muted: #9a8f82;
       --line: rgba(122,106,88,0.18);
+      --film-dark: #0e0c0a;
+      --film-border: #1a1612;
+      --sprocket: #161210;
     }
 
     html { scroll-behavior: smooth; }
@@ -43,27 +46,23 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 3rem;
-      transition: background 0.4s, border-color 0.4s;
-      background: rgba(186, 230, 253, 0.92);
-      border-bottom: 2px solid #7dd3fc;
+      transition: background 0.4s;
     }
     nav.scrolled {
-      background: rgba(186, 230, 253, 0.97);
+      background: rgba(250,248,244,0.96);
       backdrop-filter: blur(8px);
-      border-bottom: 2px solid #38bdf8;
+      border-bottom: 1px solid var(--line);
     }
     .nav-logo {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.1rem;
-      font-weight: 700;
+      font-weight: 400;
       letter-spacing: 0.08em;
-      color: #fff;
+      color: var(--cream);
       text-decoration: none;
       transition: color 0.4s;
-      text-shadow: 0 1px 3px rgba(0,80,140,0.18);
     }
-    nav.scrolled .nav-logo { color: #fff; }
-
+    nav.scrolled .nav-logo { color: var(--dark); }
     .nav-links {
       display: flex;
       gap: 2.5rem;
@@ -71,16 +70,14 @@
     }
     .nav-links a {
       font-size: 0.7rem;
-      font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: #fff;
+      color: rgba(245,240,232,0.85);
       text-decoration: none;
       transition: color 0.3s;
-      text-shadow: 0 1px 3px rgba(0,80,140,0.15);
     }
-    nav.scrolled .nav-links a { color: #fff; }
-    .nav-links a:hover { color: #f97316 !important; }
+    nav.scrolled .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--terracotta) !important; }
 
     /* ── HERO ── */
     .hero {
@@ -95,15 +92,13 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: #f0eeec;
+      background:
+        linear-gradient(to bottom, rgba(44,40,32,0.1) 0%, rgba(44,40,32,0.62) 100%),
+        url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&auto=format&fit=crop&q=80') center/cover no-repeat;
       transform: scale(1.04);
       transition: transform 8s ease;
     }
     .hero:hover .hero-bg { transform: scale(1); }
-    /* Adjust text colours for light background */
-    .hero-eyebrow { color: var(--sage) !important; }
-    .hero-date { color: var(--muted) !important; }
-    .hero-location { color: var(--earth) !important; }
 
     .hero-content {
       position: relative;
@@ -120,27 +115,20 @@
       opacity: 0;
       animation: fadeUp 1s 0.3s forwards;
     }
+    /* ── NEUTRAL HERO TITLE ── */
     .hero-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(5rem, 11vw, 10rem);
-      font-weight: 700;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 300;
       line-height: 1.0;
-      color: #f97316;
+      color: var(--cream);
       margin-bottom: 1.5rem;
       opacity: 0;
       animation: fadeUp 1s 0.5s forwards;
     }
     .hero-title em {
       font-style: italic;
-      color: #f472b6;
-    }
-    .hero-title .name-alex {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900;
-      font-style: normal;
-      letter-spacing: 0.04em;
-      text-transform: none;
-      color: #f97316;
+      color: #e8c9a8;
     }
     .hero-meta {
       display: flex;
@@ -170,7 +158,7 @@
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
-      color: var(--muted);
+      color: rgba(245,240,232,0.6);
       font-size: 0.6rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -180,7 +168,7 @@
     .scroll-line {
       width: 1px;
       height: 50px;
-      background: var(--muted);
+      background: rgba(245,240,232,0.4);
       animation: scrollPulse 2s 1.5s infinite;
     }
     @keyframes scrollPulse {
@@ -196,11 +184,6 @@
     section { padding: 7rem 0; }
     .container {
       max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 3rem;
-    }
-    .container-narrow {
-      max-width: 740px;
       margin: 0 auto;
       padding: 0 3rem;
     }
@@ -223,7 +206,7 @@
       opacity: 0.35;
     }
 
-    /* ── INTRO ── */
+    /* ── INTRODUCTION ── */
     #introduction { background: var(--warm-white); }
     .intro-grid {
       display: grid;
@@ -326,12 +309,7 @@
       text-transform: uppercase;
       color: var(--terracotta);
     }
-
-    /* Google Form embed */
-    .rsvp-form-embed {
-      background: var(--warm-white);
-      overflow: hidden;
-    }
+    .rsvp-form-embed { background: var(--warm-white); overflow: hidden; }
     .rsvp-form-embed iframe {
       width: 100%;
       min-height: 720px;
@@ -352,10 +330,7 @@
       font-weight: 300;
       margin-bottom: 1rem;
     }
-    .poi-header p {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
+    .poi-header p { color: var(--muted); font-size: 0.9rem; }
     .poi-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -431,264 +406,239 @@
       margin-top: 0.4rem;
       opacity: 0.8;
     }
-<!-- ════════════════════════════════════
-     MEMORY ALBUM — CINEMATIC FILMSTRIP
-     Drop this entire <section> into your
-     wedding-v1.html, e.g. before #faqs
-     ════════════════════════════════════ -->
 
-<section id="memories">
-
-  <div class="memories-header">
-    <p class="memories-eyebrow">Our Story in Frames</p>
-    <h2 class="memories-title">A life together,<br><em>frame by frame</em></h2>
-  </div>
-
-  <div class="filmstrip-outer" id="filmstripOuter">
-    <div class="filmstrip-track" id="filmstripTrack">
-
-      <!-- ── REEL 1 ── -->
-      <div class="film-reel">
-        <!-- Top sprocket row -->
-        <div class="sprocket-row" id="sprocketTop1"></div>
-        <!-- Frames -->
-        <div class="frame-row">
-
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&auto=format&fit=crop&q=80" alt="Memory 1" draggable="false" />
-            <span class="frame-number">A&O · 01</span>
-            <div class="frame-caption">
-              <span class="frame-caption-year">2019</span>
-              <span class="frame-caption-text">Where it all began</span>
-            </div>
-          </div>
-
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&auto=format&fit=crop&q=80" alt="Memory 2" draggable="false" />
-            <span class="frame-number">A&O · 02</span>
-            <div class="frame-caption">
-              <span class="frame-caption-year">2020</span>
-              <span class="frame-caption-text">Our first summer together</span>
-            </div>
-          </div>
-
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=600&auto=format&fit=crop&q=80" alt="Memory 3" draggable="false" />
-            <span class="frame-number">A&O · 03</span>
-            <div class="frame-caption">
-              <span class="frame-caption-year">2020</span>
-              <span class="frame-caption-text">Sunday morning light</span>
-            </div>
-          </div>
-
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1543807535-eceef0bc6599?w=600&auto=format&fit=crop&q=80" alt="Memory 4" draggable="false" />
-            <span class="frame-number">A&O · 04</span>
-            <div class="frame-caption">
-              <span class="frame-caption-year">2021</span>
-              <span class="frame-caption-text">Road trips and wrong turns</span>
-            </div>
-          </div>
-
-        </div>
-        <!-- Bottom sprocket row -->
-        <div class="sprocket-row" id="sprocketBot1"></div>
-      </div>
-
-      <div class="reel-divider"><span></span><span></span><span></span></div>
-
-      <!-- ── REEL 2 ── -->
-      <div class="film-reel">
-        <div class="sprocket-row" id="sprocketTop2"></div>
-        <div class="frame-row">
-
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600&auto=format&fit=crop&q=80" alt="Memory 5" draggable="false" />
-            <span class="frame-number">A&O · 05</span>
-            <div class="frame-caption">
-              <span class="frame-caption-year">2021</span>
-              <span class="frame-caption-text">Somewhere in the mountains</span>
-            </div>
-          </div>
-
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&auto=format&fit=crop&q=80" alt="Memory 6" draggable="false" />
-            <span class="frame-number">A&O · 06</span>
-            <div class="frame-caption">
-              <span class="frame-caption-year">2022</span>
-              <span class="frame-caption-text">The evening we said let's stay</span>
-            </div>
-          </div>
-
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?w=600&auto=format&fit=crop&q=80" alt="Memory 7" draggable="false" />
-            <span class="frame-number">A&O · 07</span>
-            <div class="frame-caption">
-              <span class="frame-caption-year">2022</span>
-              <span class="frame-caption-text">Home</span>
-            </div>
-          </div>
-
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&auto=format&fit=crop&q=80" alt="Memory 8" draggable="false" />
-            <span class="frame-number">A&O · 08</span>
-            <div class="frame-caption">
-              <span class="frame-caption-year">2023</span>
-              <span class="frame-caption-text">Dancing in the kitchen</span>
-            </div>
-          </div>
-
-        </div>
-        <div class="sprocket-row" id="sprocketBot2"></div>
-      </div>
-
-      <div class="reel-divider"><span></span><span></span><span></span></div>
-
-      <!-- ── REEL 3 ── -->
-      <div class="film-reel">
-        <div class="sprocket-row" id="sprocketTop3"></div>
-        <div class="frame-row">
-
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&auto=format&fit=crop&q=80" alt="Memory 9" draggable="false" />
-            <span class="frame-number">A&O · 09</span>
-            <div class="frame-caption">
-              <span class="frame-caption-year">2023</span>
-              <span class="frame-caption-text">The proposal</span>
-            </div>
-          </div>
-
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&auto=format&fit=crop&q=80" alt="Memory 10" draggable="false" />
-            <span class="frame-number">A&O · 10</span>
-            <div class="frame-caption">
-              <span class="frame-caption-year">2024</span>
-              <span class="frame-caption-text">Celebrating with family</span>
-            </div>
-          </div>
-
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=600&auto=format&fit=crop&q=80" alt="Memory 11" draggable="false" />
-            <span class="frame-number">A&O · 11</span>
-            <div class="frame-caption">
-              <span class="frame-caption-year">2024</span>
-              <span class="frame-caption-text">First visit to Ronda</span>
-            </div>
-          </div>
-
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop&q=80" alt="Memory 12" draggable="false" />
-            <span class="frame-number">A&O · 12</span>
-            <div class="frame-caption">
-              <span class="frame-caption-year">2025</span>
-              <span class="frame-caption-text">We knew this was the place</span>
-            </div>
-          </div>
-
-        </div>
-        <div class="sprocket-row" id="sprocketBot3"></div>
-      </div>
-
-    </div><!-- /filmstrip-track -->
-  </div><!-- /filmstrip-outer -->
-
-  <p class="drag-hint">
-    <span class="drag-arrow">←</span>
-    drag to explore
-    <span class="drag-arrow">→</span>
-  </p>
-
-  <div class="memories-tagline">
-    <p>"every frame, a reason to say yes."</p>
-  </div>
-
-</section>
-
-
-<script>
-  /* ── Populate sprocket holes dynamically ── */
-  function fillSprockets(rowId, count = 18) {
-    const row = document.getElementById(rowId);
-    if (!row) return;
-    for (let i = 0; i < count; i++) {
-      const hole = document.createElement('div');
-      hole.className = 'sprocket-hole';
-      row.appendChild(hole);
+    /* ── FILMSTRIP / MEMORIES ── */
+    #memories {
+      background: var(--film-dark);
+      padding: 6rem 0 5rem;
+      overflow: hidden;
+      position: relative;
     }
-  }
-  ['sprocketTop1','sprocketBot1','sprocketTop2','sprocketBot2','sprocketTop3','sprocketBot3']
-    .forEach(id => fillSprockets(id));
+    #memories::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .memories-header {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      margin-bottom: 3.5rem;
+      padding: 0 2rem;
+    }
+    .memories-eyebrow {
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .memories-eyebrow::before,
+    .memories-eyebrow::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--terracotta);
+      opacity: 0.4;
+    }
+    .memories-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.1;
+    }
+    .memories-title em { font-style: italic; color: #e8c9a8; }
 
-  /* ── Drag-to-scroll filmstrip ── */
-  const outer = document.getElementById('filmstripOuter');
-  const track = document.getElementById('filmstripTrack');
+    .filmstrip-outer {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      cursor: grab;
+      scrollbar-width: none;
+    }
+    .filmstrip-outer::-webkit-scrollbar { display: none; }
+    .filmstrip-outer:active { cursor: grabbing; }
+    .filmstrip-outer::before,
+    .filmstrip-outer::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 120px;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .filmstrip-outer::before {
+      left: 0;
+      background: linear-gradient(to right, var(--film-dark), transparent);
+    }
+    .filmstrip-outer::after {
+      right: 0;
+      background: linear-gradient(to left, var(--film-dark), transparent);
+    }
+    .filmstrip-track {
+      display: flex;
+      align-items: stretch;
+      user-select: none;
+    }
+    .film-reel {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      background: var(--film-border);
+    }
+    .sprocket-row {
+      display: flex;
+      align-items: center;
+      height: 28px;
+      background: var(--sprocket);
+      padding: 0 8px;
+      gap: 12px;
+    }
+    .sprocket-hole {
+      width: 18px;
+      height: 14px;
+      border-radius: 2px;
+      background: var(--film-dark);
+      flex-shrink: 0;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+    }
+    .frame-row {
+      display: flex;
+      gap: 3px;
+      padding: 0 3px;
+      background: var(--film-border);
+    }
+    .film-frame {
+      position: relative;
+      width: 260px;
+      height: 340px;
+      overflow: hidden;
+      background: #1a1410;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .film-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: sepia(0.12) contrast(1.08) brightness(0.9) saturate(0.92);
+      transition: filter 0.5s ease, transform 0.6s ease;
+      pointer-events: none;
+    }
+    .film-frame:hover img {
+      filter: sepia(0) contrast(1.05) brightness(1.0) saturate(1.05);
+      transform: scale(1.04);
+    }
+    .frame-number {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      color: rgba(245,240,232,0.28);
+      z-index: 3;
+      pointer-events: none;
+    }
+    .frame-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem 1rem 1rem;
+      background: linear-gradient(to top, rgba(14,12,10,0.88) 0%, transparent 100%);
+      transform: translateY(8px);
+      opacity: 0;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+    }
+    .film-frame:hover .frame-caption { opacity: 1; transform: translateY(0); }
+    .frame-caption-year {
+      display: block;
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.2rem;
+    }
+    .frame-caption-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.3;
+    }
+    .reel-divider {
+      width: 24px;
+      background: var(--film-dark);
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .reel-divider span {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(245,240,232,0.07);
+    }
+    .drag-hint {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+    .drag-arrow { display: inline-block; animation: nudge 2.5s ease-in-out infinite; }
+    .drag-arrow:last-child { animation-direction: reverse; }
+    @keyframes nudge {
+      0%, 100% { transform: translateX(0); opacity: 0.3; }
+      50% { transform: translateX(6px); opacity: 0.7; }
+    }
+    .memories-tagline {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      margin-top: 3.5rem;
+      padding: 0 2rem;
+    }
+    .memories-tagline p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(245,240,232,0.35);
+      letter-spacing: 0.05em;
+    }
 
-  let isDragging = false;
-  let startX = 0;
-  let scrollLeft = 0;
-
-  outer.addEventListener('mousedown', e => {
-    isDragging = true;
-    startX = e.pageX - outer.offsetLeft;
-    scrollLeft = outer.scrollLeft;
-    outer.style.cursor = 'grabbing';
-  });
-
-  outer.addEventListener('mouseleave', () => { isDragging = false; outer.style.cursor = 'grab'; });
-  outer.addEventListener('mouseup', () => { isDragging = false; outer.style.cursor = 'grab'; });
-
-  outer.addEventListener('mousemove', e => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - outer.offsetLeft;
-    const walk = (x - startX) * 1.4;
-    outer.scrollLeft = scrollLeft - walk;
-  });
-
-  /* Touch support */
-  outer.addEventListener('touchstart', e => {
-    startX = e.touches[0].pageX;
-    scrollLeft = outer.scrollLeft;
-  }, { passive: true });
-
-  outer.addEventListener('touchmove', e => {
-    const x = e.touches[0].pageX;
-    outer.scrollLeft = scrollLeft - (x - startX);
-  }, { passive: true });
-
-  /* Make outer scrollable */
-  outer.style.overflowX = 'scroll';
-  outer.style.scrollbarWidth = 'none'; /* Firefox */
-  const style = document.createElement('style');
-  style.textContent = '#filmstripOuter::-webkit-scrollbar { display: none; }';
-  document.head.appendChild(style);
-
-  /* ── Fade-in on scroll ── */
-  const section = document.getElementById('memories');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        section.querySelectorAll('.film-frame').forEach((frame, i) => {
-          frame.style.opacity = '0';
-          frame.style.transform = 'translateY(20px)';
-          frame.style.transition = `opacity 0.7s ease ${i * 0.06}s, transform 0.7s ease ${i * 0.06}s`;
-          requestAnimationFrame(() => {
-            frame.style.opacity = '1';
-            frame.style.transform = 'translateY(0)';
-          });
-        });
-        observer.unobserve(section);
-      }
-    });
-  }, { threshold: 0.15 });
-  observer.observe(section);
-</script>
-    /* ── FAQ ── */
+    /* ── FAQs ── */
     #faqs {
-      background: var(--dark);
+      background: #1e1a15;
       color: var(--cream);
     }
-    #faqs .section-label { color: #e8c9a8; }
+    #faqs .section-label { color: var(--terracotta); }
     #faqs .section-label::after { background: var(--terracotta); opacity: 0.4; }
     .faq-layout {
       display: grid;
@@ -705,51 +655,67 @@
       top: 120px;
     }
     .faq-sidebar h2 em { font-style: italic; color: #e8c9a8; }
-    .faq-list { border-top: 1px solid rgba(245,240,232,0.1); }
-    .faq-item { border-bottom: 1px solid rgba(245,240,232,0.1); overflow: hidden; }
+
+    /* ── FAQ LIST — clear, legible ── */
+    .faq-list {
+      border-top: 1px solid rgba(245,240,232,0.15);
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(245,240,232,0.15);
+      overflow: hidden;
+    }
     .faq-q {
       width: 100%;
       background: none;
       border: none;
       text-align: left;
-      padding: 1.8rem 0;
+      padding: 1.6rem 0;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 400;
-      color: var(--cream);
+      color: #f0ece4;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
+      gap: 1.5rem;
       transition: color 0.3s;
+      line-height: 1.3;
     }
     .faq-q:hover { color: #e8c9a8; }
     .faq-icon {
       flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-      border: 1px solid rgba(245,240,232,0.3);
+      width: 24px;
+      height: 24px;
+      border: 1px solid rgba(245,240,232,0.35);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.75rem;
-      transition: transform 0.3s, border-color 0.3s, color 0.3s;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(245,240,232,0.6);
+      transition: transform 0.35s, border-color 0.3s, color 0.3s, background 0.3s;
     }
     .faq-item.open .faq-icon {
       transform: rotate(45deg);
       border-color: var(--terracotta);
       color: var(--terracotta);
+      background: rgba(193,127,90,0.08);
     }
-    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s ease;
+    }
     .faq-a-inner {
-      padding-bottom: 1.8rem;
-      color: rgba(245,240,232,0.6);
-      font-size: 0.88rem;
-      line-height: 1.8;
+      padding: 0 0 2rem;
+      color: rgba(245,240,232,0.72);
+      font-size: 0.92rem;
+      line-height: 1.85;
+      font-weight: 300;
     }
-    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-item.open .faq-a { max-height: 400px; }
 
     /* ── FOOTER ── */
     footer {
@@ -790,11 +756,12 @@
       .nav-links { display: none; }
       .hero-content { padding: 0 1.5rem 4rem; }
       .hero-scroll { right: 1.5rem; }
-      .container, .container-narrow { padding: 0 1.5rem; }
+      .container { padding: 0 1.5rem; }
       section { padding: 5rem 0; }
       .intro-grid, .rsvp-inner, .faq-layout { grid-template-columns: 1fr; gap: 2.5rem; }
       .intro-image::before { display: none; }
       .poi-grid { grid-template-columns: 1fr; }
+      .film-frame { width: 200px; height: 260px; }
       footer { flex-direction: column; text-align: center; }
       .footer-info { text-align: center; }
     }
@@ -809,6 +776,7 @@
     <li><a href="#introduction">Our Story</a></li>
     <li><a href="#rsvp">RSVP</a></li>
     <li><a href="#points-of-interest">Explore Ronda</a></li>
+    <li><a href="#memories">Memories</a></li>
     <li><a href="#faqs">FAQs</a></li>
   </ul>
 </nav>
@@ -818,7 +786,7 @@
   <div class="hero-bg" id="heroBg"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Together with their families</p>
-    <h1 class="hero-title"><span class="name-alex">Alex</span><br>&amp; <em>Olivia</em></h1>
+    <h1 class="hero-title">Alex<br>&amp; <em>Olivia</em></h1>
     <div class="hero-meta">
       <p class="hero-date">3rd October 2026 &nbsp;·&nbsp; 4pm until late</p>
       <p class="hero-location"><a href="https://almazaralaorganic.com/en/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">La Organica, Ronda, Andalucía</a></p>
@@ -882,13 +850,8 @@
       <div class="rsvp-form-embed">
         <iframe
           src="https://docs.google.com/forms/d/e/1FAIpQLSeTwg4ZrQwx6NWYKzr04GrUi2scMXFRawO6uR_5EdY_qURQKQ/viewform?embedded=true"
-          frameborder="0"
-          marginheight="0"
-          marginwidth="0"
-          title="Wedding RSVP Form"
-          loading="lazy">
-          Loading…
-        </iframe>
+          frameborder="0" marginheight="0" marginwidth="0"
+          title="Wedding RSVP Form" loading="lazy">Loading…</iframe>
       </div>
     </div>
   </div>
@@ -908,7 +871,6 @@
         <div class="poi-overlay">
           <p class="poi-type">A local's perspective</p>
           <p class="poi-name">Ronda through our eyes</p>
-          <p class="poi-desc">We fell in love with this town long before we decided to get married here. Come explore it with us.</p>
           <p class="poi-dist">· Our Ronda</p>
         </div>
       </div>
@@ -970,6 +932,117 @@
   </div>
 </section>
 
+<!-- ── MEMORIES / FILMSTRIP ── -->
+<section id="memories">
+  <div class="memories-header">
+    <p class="memories-eyebrow">Our Story in Frames</p>
+    <h2 class="memories-title">A life together,<br><em>frame by frame</em></h2>
+  </div>
+
+  <div class="filmstrip-outer" id="filmstripOuter">
+    <div class="filmstrip-track" id="filmstripTrack">
+
+      <!-- REEL 1 -->
+      <div class="film-reel">
+        <div class="sprocket-row" id="st1"></div>
+        <div class="frame-row">
+          <div class="film-frame">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&auto=format&fit=crop&q=80" alt="Memory 1" draggable="false" />
+            <span class="frame-number">A&O · 01</span>
+            <div class="frame-caption"><span class="frame-caption-year">2019</span><span class="frame-caption-text">Where it all began</span></div>
+          </div>
+          <div class="film-frame">
+            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&auto=format&fit=crop&q=80" alt="Memory 2" draggable="false" />
+            <span class="frame-number">A&O · 02</span>
+            <div class="frame-caption"><span class="frame-caption-year">2020</span><span class="frame-caption-text">Our first summer together</span></div>
+          </div>
+          <div class="film-frame">
+            <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=600&auto=format&fit=crop&q=80" alt="Memory 3" draggable="false" />
+            <span class="frame-number">A&O · 03</span>
+            <div class="frame-caption"><span class="frame-caption-year">2020</span><span class="frame-caption-text">Sunday morning light</span></div>
+          </div>
+          <div class="film-frame">
+            <img src="https://images.unsplash.com/photo-1543807535-eceef0bc6599?w=600&auto=format&fit=crop&q=80" alt="Memory 4" draggable="false" />
+            <span class="frame-number">A&O · 04</span>
+            <div class="frame-caption"><span class="frame-caption-year">2021</span><span class="frame-caption-text">Road trips and wrong turns</span></div>
+          </div>
+        </div>
+        <div class="sprocket-row" id="sb1"></div>
+      </div>
+
+      <div class="reel-divider"><span></span><span></span><span></span></div>
+
+      <!-- REEL 2 -->
+      <div class="film-reel">
+        <div class="sprocket-row" id="st2"></div>
+        <div class="frame-row">
+          <div class="film-frame">
+            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600&auto=format&fit=crop&q=80" alt="Memory 5" draggable="false" />
+            <span class="frame-number">A&O · 05</span>
+            <div class="frame-caption"><span class="frame-caption-year">2021</span><span class="frame-caption-text">Somewhere in the mountains</span></div>
+          </div>
+          <div class="film-frame">
+            <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&auto=format&fit=crop&q=80" alt="Memory 6" draggable="false" />
+            <span class="frame-number">A&O · 06</span>
+            <div class="frame-caption"><span class="frame-caption-year">2022</span><span class="frame-caption-text">The evening we said let's stay</span></div>
+          </div>
+          <div class="film-frame">
+            <img src="https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?w=600&auto=format&fit=crop&q=80" alt="Memory 7" draggable="false" />
+            <span class="frame-number">A&O · 07</span>
+            <div class="frame-caption"><span class="frame-caption-year">2022</span><span class="frame-caption-text">Home</span></div>
+          </div>
+          <div class="film-frame">
+            <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&auto=format&fit=crop&q=80" alt="Memory 8" draggable="false" />
+            <span class="frame-number">A&O · 08</span>
+            <div class="frame-caption"><span class="frame-caption-year">2023</span><span class="frame-caption-text">Dancing in the kitchen</span></div>
+          </div>
+        </div>
+        <div class="sprocket-row" id="sb2"></div>
+      </div>
+
+      <div class="reel-divider"><span></span><span></span><span></span></div>
+
+      <!-- REEL 3 -->
+      <div class="film-reel">
+        <div class="sprocket-row" id="st3"></div>
+        <div class="frame-row">
+          <div class="film-frame">
+            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&auto=format&fit=crop&q=80" alt="Memory 9" draggable="false" />
+            <span class="frame-number">A&O · 09</span>
+            <div class="frame-caption"><span class="frame-caption-year">2023</span><span class="frame-caption-text">The proposal</span></div>
+          </div>
+          <div class="film-frame">
+            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&auto=format&fit=crop&q=80" alt="Memory 10" draggable="false" />
+            <span class="frame-number">A&O · 10</span>
+            <div class="frame-caption"><span class="frame-caption-year">2024</span><span class="frame-caption-text">Celebrating with family</span></div>
+          </div>
+          <div class="film-frame">
+            <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=600&auto=format&fit=crop&q=80" alt="Memory 11" draggable="false" />
+            <span class="frame-number">A&O · 11</span>
+            <div class="frame-caption"><span class="frame-caption-year">2024</span><span class="frame-caption-text">First visit to Ronda</span></div>
+          </div>
+          <div class="film-frame">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop&q=80" alt="Memory 12" draggable="false" />
+            <span class="frame-number">A&O · 12</span>
+            <div class="frame-caption"><span class="frame-caption-year">2025</span><span class="frame-caption-text">We knew this was the place</span></div>
+          </div>
+        </div>
+        <div class="sprocket-row" id="sb3"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <p class="drag-hint">
+    <span class="drag-arrow">←</span>
+    drag to explore
+    <span class="drag-arrow">→</span>
+  </p>
+  <div class="memories-tagline">
+    <p>"every frame, a reason to say yes."</p>
+  </div>
+</section>
+
 <!-- ── FAQs ── -->
 <section id="faqs">
   <div class="container">
@@ -980,15 +1053,17 @@
       </div>
       <div>
         <div class="faq-list">
+
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">
               How do I get to Ronda?
               <span class="faq-icon">+</span>
             </button>
             <div class="faq-a" role="region">
-              <div class="faq-a-inner">The nearest airports are Málaga (1 hour drive) and Seville (1.5 hours). Both have excellent connections from the UK and Europe. There's also a scenic train from Málaga or from Seville if you'd prefer to arrive by rail — we highly recommend it. We'll be sharing more detailed travel notes closer to the date.</div>
+              <div class="faq-a-inner">The nearest airports are Málaga (1 hour drive) and Seville (1.5 hours). Both have excellent connections from the UK and Europe. There's also a scenic train from Málaga or Seville if you'd prefer to arrive by rail — we highly recommend it. We'll be sharing more detailed travel notes closer to the date.</div>
             </div>
           </div>
+
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">
               Where should I stay in Ronda?
@@ -998,6 +1073,7 @@
               <div class="faq-a-inner">Ronda itself has wonderful places to stay. We recommend the Parador de Ronda for something special (book early), or Hotel Catalonia Ronda as a lovely mid-range option. There are also beautiful rural fincas in the surrounding countryside if you'd like to make a proper retreat of it. A shuttle will run between Ronda town centre and the venue on the day.</div>
             </div>
           </div>
+
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">
               What is summer formal dress code?
@@ -1007,6 +1083,7 @@
               <div class="faq-a-inner">Think elegant but relaxed — light suits, blazers with linen trousers, or smart chinos for men; midi or maxi dresses, jumpsuits, or elegant separates for women. October in Ronda is warm during the day (around 22–24°C) but cools pleasantly in the evening, so a light layer is a good idea. Heels will be on terrace and grass — wedges or block heels work beautifully.</div>
             </div>
           </div>
+
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">
               Is there transport to and from the venue?
@@ -1016,15 +1093,17 @@
               <div class="faq-a-inner">Yes — we'll be running a shuttle from Ronda town centre (departing from near the Parador) at 3:15 pm and 3:45 pm, and return shuttles will run throughout the evening. Please let us know on your RSVP if you'll need a spot so we can plan numbers. A taxi rank will also be available at the venue for later departures.</div>
             </div>
           </div>
+
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">
               What's the weather like in October?
               <span class="faq-icon">+</span>
             </button>
             <div class="faq-a" role="region">
-              <div class="faq-a-inner">Early October in Ronda is genuinely beautiful — warm golden days (22–26°C), clear skies, and cool evenings. It's the sweet spot after the summer heat. There is a small chance of rain so we always have a contingency covered plan in place, but we're optimistic! Sunscreen during the afternoon ceremony is a good idea.</div>
+              <div class="faq-a-inner">Early October in Ronda is genuinely beautiful — warm golden days (22–26°C), clear skies, and cool evenings. It's the sweet spot after the summer heat. There is a small chance of rain so we always have a contingency plan in place, but we're optimistic! Sunscreen during the afternoon ceremony is a good idea.</div>
             </div>
           </div>
+
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">
               Are children welcome?
@@ -1034,6 +1113,7 @@
               <div class="faq-a-inner">We love your children dearly, but we've chosen to make our day an adults-only celebration (18+) so that everyone — parents most of all — can truly let their hair down. We hope you understand and can arrange childcare. If this presents any difficulty please get in touch and we'll do our best to help.</div>
             </div>
           </div>
+
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">
               What about gifts?
@@ -1043,6 +1123,7 @@
               <div class="faq-a-inner">Honestly, making the trip to Spain with us is the most generous gift we could ask for. If you'd like to contribute something, we have a small honeymoon fund — details will be shared with your paper invitation. No obligation whatsoever.</div>
             </div>
           </div>
+
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">
               Can I take photos during the ceremony?
@@ -1052,6 +1133,7 @@
               <div class="faq-a-inner">We'd love for you to be fully present with us during the ceremony, so we're asking for an unplugged moment — phones and cameras away while we say our vows. Our photographer will capture everything beautifully. After the ceremony, please take as many photos as you like! We'll share a link to a communal album so everyone can add their favourites.</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1063,18 +1145,18 @@
   <div class="footer-brand">Alex <em>&amp;</em> Olivia</div>
   <div class="footer-info">
     <p>3rd October 2026 · <a href="https://almazaralaorganic.com/en/" target="_blank" rel="noopener" style="color:var(--terracotta);text-decoration:none;">La Organica, Ronda, Spain</a></p>
-    <p>Questions? <a href="/cdn-cgi/l/email-protection#a5c4c9c0ddcac9ccd3ccc4d2c0c1c1cccbc297959793e5c2c8c4ccc98bc6cac8" class="footer-contact"><span class="__cf_email__" data-cfemail="f49598918c9b989d829d95839190909d9a93c6c4c6c2b49399959d98da979b99">[email&#160;protected]</span></a></p>
+    <p>Questions? <a href="mailto:alexoliviawedding2026@gmail.com" class="footer-contact">alexoliviawedding2026@gmail.com</a></p>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Nav scroll
+<script>
+  /* ── Nav scroll ── */
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  // Parallax hero
+  /* ── Parallax hero ── */
   const heroBg = document.getElementById('heroBg');
   window.addEventListener('scroll', () => {
     if (window.scrollY < window.innerHeight) {
@@ -1082,18 +1164,60 @@
     }
   });
 
-  // FAQ accordion
+  /* ── Sprocket holes ── */
+  function fillSprockets(rowId, count) {
+    const row = document.getElementById(rowId);
+    if (!row) return;
+    for (let i = 0; i < count; i++) {
+      const hole = document.createElement('div');
+      hole.className = 'sprocket-hole';
+      row.appendChild(hole);
+    }
+  }
+  ['st1','sb1','st2','sb2','st3','sb3'].forEach(id => fillSprockets(id, 18));
+
+  /* ── Filmstrip drag-to-scroll ── */
+  const outer = document.getElementById('filmstripOuter');
+  let isDragging = false, startX = 0, scrollLeft = 0;
+
+  outer.addEventListener('mousedown', e => {
+    isDragging = true;
+    startX = e.pageX - outer.offsetLeft;
+    scrollLeft = outer.scrollLeft;
+    outer.style.cursor = 'grabbing';
+  });
+  outer.addEventListener('mouseleave', () => { isDragging = false; outer.style.cursor = 'grab'; });
+  outer.addEventListener('mouseup', () => { isDragging = false; outer.style.cursor = 'grab'; });
+  outer.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    e.preventDefault();
+    outer.scrollLeft = scrollLeft - (e.pageX - outer.offsetLeft - startX) * 1.4;
+  });
+  outer.addEventListener('touchstart', e => {
+    startX = e.touches[0].pageX;
+    scrollLeft = outer.scrollLeft;
+  }, { passive: true });
+  outer.addEventListener('touchmove', e => {
+    outer.scrollLeft = scrollLeft - (e.touches[0].pageX - startX);
+  }, { passive: true });
+
+  /* ── FAQ accordion ── */
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
       const item = btn.closest('.faq-item');
       const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
-      btn.setAttribute('aria-expanded', !isOpen);
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
     });
   });
 
-  // Fade-in on scroll
+  /* ── Fade-in on scroll ── */
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -1110,6 +1234,26 @@
     el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
     observer.observe(el);
   });
+
+  /* ── Filmstrip fade-in ── */
+  const memoriesSection = document.getElementById('memories');
+  const filmObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        memoriesSection.querySelectorAll('.film-frame').forEach((frame, i) => {
+          frame.style.opacity = '0';
+          frame.style.transform = 'translateY(20px)';
+          frame.style.transition = `opacity 0.7s ease ${i * 0.06}s, transform 0.7s ease ${i * 0.06}s`;
+          requestAnimationFrame(() => {
+            frame.style.opacity = '1';
+            frame.style.transform = 'translateY(0)';
+          });
+        });
+        filmObserver.unobserve(memoriesSection);
+      }
+    });
+  }, { threshold: 0.1 });
+  filmObserver.observe(memoriesSection);
 </script>
 </body>
 </html>
