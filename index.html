@@ -46,15 +46,15 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 3rem;
-      background: rgba(185, 215, 232, 0.95);
+      background: rgba(220, 237, 247, 0.95);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(150, 195, 218, 0.45);
+      border-bottom: 1px solid rgba(190, 220, 238, 0.45);
       transition: background 0.4s;
     }
     nav.scrolled {
-      background: rgba(185, 215, 232, 0.98);
+      background: rgba(220, 237, 247, 0.98);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(150, 195, 218, 0.55);
+      border-bottom: 1px solid rgba(190, 220, 238, 0.55);
     }
     .nav-logo {
       font-family: 'Cormorant Garamond', serif;
@@ -345,7 +345,24 @@
     .poi-header p {
       color: var(--muted);
       font-size: 0.9rem;
+      margin-bottom: 1rem;
     }
+    .poi-map-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(193,127,90,0.35);
+      padding-bottom: 2px;
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .poi-map-link:hover { color: var(--earth); border-color: var(--earth); }
+    .poi-map-link svg { flex-shrink: 0; }
     .poi-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -404,229 +421,113 @@
       opacity: 0.8;
     }
 
-    /* ── FILMSTRIP / MEMORIES ── */
+    /* ── PHOTO ALBUM / MEMORIES ── */
     #memories {
-      background: #b8a898;
-      padding: 6rem 0 5rem;
-      overflow: hidden;
-      position: relative;
+      background: var(--warm-white);
+      padding: 7rem 0;
     }
-    #memories::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
-      opacity: 0.2;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .memories-header {
-      position: relative;
-      z-index: 2;
+    .album-header {
       text-align: center;
-      margin-bottom: 3.5rem;
-      padding: 0 2rem;
+      max-width: 560px;
+      margin: 0 auto 4rem;
     }
-    .memories-eyebrow {
+    .album-eyebrow {
       font-size: 0.62rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--dark);
+      color: var(--terracotta);
       margin-bottom: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 1rem;
     }
-    .memories-eyebrow::before,
-    .memories-eyebrow::after {
+    .album-eyebrow::before,
+    .album-eyebrow::after {
       content: '';
       width: 40px;
       height: 1px;
-      background: var(--dark);
-      opacity: 0.5;
+      background: var(--terracotta);
+      opacity: 0.4;
     }
-    .memories-title {
+    .album-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2.4rem, 5vw, 4rem);
       font-weight: 300;
       color: var(--dark);
       line-height: 1.1;
+      margin-bottom: 1rem;
     }
-    .memories-title em { font-style: italic; color: var(--earth); }
-
-    .filmstrip-outer {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      overflow-x: scroll;
-      overflow-y: hidden;
-      cursor: grab;
-      scrollbar-width: none;
+    .album-title em { font-style: italic; color: var(--terracotta); }
+    .album-subtitle {
+      color: var(--muted);
+      font-size: 0.9rem;
     }
-    .filmstrip-outer::-webkit-scrollbar { display: none; }
-    .filmstrip-outer:active { cursor: grabbing; }
-    .filmstrip-outer::before,
-    .filmstrip-outer::after {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      width: 120px;
-      z-index: 10;
-      pointer-events: none;
-    }
-    .filmstrip-outer::before {
-      left: 0;
-      background: linear-gradient(to right, #b8a898, transparent);
-    }
-    .filmstrip-outer::after {
-      right: 0;
-      background: linear-gradient(to left, #b8a898, transparent);
-    }
-    .filmstrip-track {
-      display: flex;
-      align-items: stretch;
-      user-select: none;
-    }
-    .film-reel {
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      background: var(--film-border);
-    }
-    .sprocket-row {
-      display: flex;
-      align-items: center;
-      height: 28px;
-      background: var(--sprocket);
-      padding: 0 8px;
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 160px;
       gap: 12px;
     }
-    .sprocket-hole {
-      width: 18px;
-      height: 14px;
-      border-radius: 2px;
-      background: #b8a898;
-      flex-shrink: 0;
-      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
-    }
-    .frame-row {
-      display: flex;
-      gap: 3px;
-      padding: 0 3px;
-      background: var(--film-border);
-    }
-    .film-frame {
+    .album-photo {
       position: relative;
-      width: 310px;
-      height: 400px;
       overflow: hidden;
-      background: #2a2018;
-      flex-shrink: 0;
-      cursor: pointer;
+      background: var(--cream);
     }
-    .film-frame img {
+    .album-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      filter: sepia(0.12) contrast(1.08) brightness(0.9) saturate(0.92);
-      transition: filter 0.5s ease, transform 0.6s ease;
-      pointer-events: none;
+      transition: transform 0.6s ease;
     }
-    .film-frame:hover img {
-      filter: sepia(0) contrast(1.05) brightness(1.0) saturate(1.05);
-      transform: scale(1.04);
-    }
-    .frame-number {
+    .album-photo:hover img { transform: scale(1.04); }
+    .album-photo .photo-caption {
       position: absolute;
-      top: 8px;
-      right: 10px;
-      font-family: 'Courier New', monospace;
-      font-size: 0.55rem;
-      letter-spacing: 0.1em;
-      color: rgba(245,240,232,0.28);
-      z-index: 3;
-      pointer-events: none;
-    }
-    .frame-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 2rem 1rem 1rem;
-      background: linear-gradient(to top, rgba(14,12,10,0.88) 0%, transparent 100%);
-      transform: translateY(8px);
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem 1rem 0.8rem;
+      background: linear-gradient(to top, rgba(44,40,32,0.72) 0%, transparent 100%);
       opacity: 0;
-      transition: opacity 0.4s ease, transform 0.4s ease;
-      pointer-events: none;
+      transition: opacity 0.35s ease;
     }
-    .film-frame:hover .frame-caption { opacity: 1; transform: translateY(0); }
-    .frame-caption-year {
+    .album-photo:hover .photo-caption { opacity: 1; }
+    .photo-caption-year {
       display: block;
-      font-size: 0.55rem;
+      font-size: 0.52rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--terracotta);
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.15rem;
     }
-    .frame-caption-text {
+    .photo-caption-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       font-style: italic;
       font-weight: 300;
       color: var(--cream);
       line-height: 1.3;
     }
-    .reel-divider {
-      width: 24px;
-      background: #b8a898;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-    .reel-divider span {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: rgba(44,40,32,0.2);
-    }
-    .drag-hint {
-      position: relative;
-      z-index: 2;
+    /* Layout: varied sizes for natural feel */
+    .album-photo:nth-child(1)  { grid-column: span 5; grid-row: span 3; }
+    .album-photo:nth-child(2)  { grid-column: span 4; grid-row: span 2; }
+    .album-photo:nth-child(3)  { grid-column: span 3; grid-row: span 2; }
+    .album-photo:nth-child(4)  { grid-column: span 4; grid-row: span 2; }
+    .album-photo:nth-child(5)  { grid-column: span 3; grid-row: span 2; }
+    .album-photo:nth-child(6)  { grid-column: span 5; grid-row: span 3; }
+    .album-photo:nth-child(7)  { grid-column: span 4; grid-row: span 2; }
+    .album-photo:nth-child(8)  { grid-column: span 3; grid-row: span 3; }
+    .album-photo:nth-child(9)  { grid-column: span 4; grid-row: span 2; }
+    .album-photo:nth-child(10) { grid-column: span 5; grid-row: span 2; }
+    .album-photo:nth-child(11) { grid-column: span 4; grid-row: span 2; }
+    .album-photo:nth-child(12) { grid-column: span 3; grid-row: span 2; }
+    .album-tagline {
       text-align: center;
-      margin-top: 2rem;
-      font-size: 0.6rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(44,40,32,0.45);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8rem;
-    }
-    .drag-arrow { display: inline-block; animation: nudge 2.5s ease-in-out infinite; }
-    .drag-arrow:last-child { animation-direction: reverse; }
-    @keyframes nudge {
-      0%, 100% { transform: translateX(0); opacity: 0.3; }
-      50% { transform: translateX(6px); opacity: 0.7; }
-    }
-    .memories-tagline {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      margin-top: 3.5rem;
-      padding: 0 2rem;
-    }
-    .memories-tagline p {
+      margin-top: 3rem;
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-size: clamp(1rem, 2vw, 1.25rem);
       font-style: italic;
       font-weight: 300;
-      color: rgba(44,40,32,0.55);
+      color: var(--muted);
       letter-spacing: 0.05em;
     }
 
@@ -742,6 +643,12 @@
       .intro-grid, .rsvp-inner, .faq-layout { grid-template-columns: 1fr; gap: 2.5rem; }
       .intro-image::before { display: none; }
       .poi-grid { grid-template-columns: 1fr; }
+      .album-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 200px;
+      }
+      .album-photo:nth-child(n) { grid-column: span 1; grid-row: span 1; }
+      .album-photo:nth-child(1), .album-photo:nth-child(6), .album-photo:nth-child(8) { grid-column: span 2; grid-row: span 1; }
       footer { flex-direction: column; text-align: center; }
       .footer-info { text-align: center; }
     }
@@ -769,7 +676,7 @@
     <h1 class="hero-title">Alex<br>&amp; <em>Olivia</em></h1>
     <div class="hero-meta">
       <p class="hero-date">3rd October 2026 &nbsp;·&nbsp; 4pm until late</p>
-      <p class="hero-location">La Organica, Ronda, Andalucía</p>
+      <p class="hero-location"><a href="https://almazaralaorganic.com/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">La Organica, Ronda, Andalucía</a></p>
     </div>
   </div>
   <div class="hero-scroll">
@@ -786,7 +693,7 @@
         <p class="section-label">Our Story</p>
         <h2>Under the <em>Andalusian</em> sky</h2>
         <p>We are so happy you're here. After years of adventures together — from Sunday markets to faraway mountains — we're ready to celebrate the next chapter, and we couldn't imagine doing it without you.</p>
-        <p>We chose Ronda for its quiet drama, its ancient light, and because La Organica felt like the most beautiful place in the world to say our vows. We hope it feels that way to you too.</p>
+        <p>We chose Ronda for its quiet drama, its ancient light, and because <a href="https://almazaralaorganic.com/" target="_blank" rel="noopener" style="color:var(--dark);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(193,127,90,0.5);">La Organica</a> felt like the most beautiful place in the world to say our vows. We hope it feels that way to you too.</p>
         <p>This page has everything you need to plan your visit. We're getting married in southern Spain in early autumn — warm evenings, golden light, and good wine are all but guaranteed.</p>
         <div class="intro-detail">
           <div class="detail-item">
@@ -803,12 +710,12 @@
           </div>
           <div class="detail-item">
             <small>Venue</small>
-            <span>La Organica, Ronda</span>
+            <span><a href="https://almazaralaorganic.com/" target="_blank" rel="noopener" style="color:var(--dark);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(193,127,90,0.5);">La Organica, Ronda</a></span>
           </div>
         </div>
       </div>
       <div class="intro-image">
-        <img src="images/cortijo_01.jpg" alt="Ronda, Spain" />
+        <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=800&auto=format&fit=crop&q=80" alt="Ronda, Spain" />
       </div>
     </div>
   </div>
@@ -849,10 +756,15 @@
       <p class="section-label" style="justify-content:center;">Discover the region</p>
       <h2>Exploring Ronda</h2>
       <p>Perched above a dramatic gorge in the Andalusian mountains, Ronda is one of Spain's most extraordinary towns. Here are our favourite spots to make a proper trip of it.</p>
+      <p>We've also put together a carefully curated map of our favourite places — restaurants, viewpoints, hidden corners, and everything in between.</p>
+      <a href="https://maps.app.goo.gl/hNSpXKkab38fdyTD8" target="_blank" rel="noopener" class="poi-map-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        View our Ronda map
+      </a>
     </div>
     <div class="poi-grid">
       <div class="poi-card">
-        <img src="images/Liv_ronda.jpeg" alt="Puente Nuevo" />
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop&q=80" alt="Puente Nuevo" />
         <div class="poi-overlay">
           <p class="poi-type">Landmark</p>
           <p class="poi-name">Puente Nuevo</p>
@@ -918,114 +830,65 @@
   </div>
 </section>
 
-<!-- ── MEMORIES / FILMSTRIP ── -->
+<!-- ── MEMORIES / PHOTO ALBUM ── -->
 <section id="memories">
-  <div class="memories-header">
-    <p class="memories-eyebrow">Our Story in Frames</p>
-    <h2 class="memories-title">A life together,<br><em>frame by frame</em></h2>
-  </div>
-
-  <div class="filmstrip-outer" id="filmstripOuter">
-    <div class="filmstrip-track" id="filmstripTrack">
-
-      <!-- REEL 1 -->
-      <div class="film-reel">
-        <div class="sprocket-row" id="st1"></div>
-        <div class="frame-row">
-          <div class="film-frame">
-            <img src="images/alex-olivia-henley-regatta.jpg" alt="Memory 1" draggable="false" />
-            <span class="frame-number">A&O · 01</span>
-            <div class="frame-caption"><span class="frame-caption-year">2019</span><span class="frame-caption-text">Where it all began</span></div>
-          </div>
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&auto=format&fit=crop&q=80" alt="Memory 2" draggable="false" />
-            <span class="frame-number">A&O · 02</span>
-            <div class="frame-caption"><span class="frame-caption-year">2020</span><span class="frame-caption-text">Our first summer together</span></div>
-          </div>
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=600&auto=format&fit=crop&q=80" alt="Memory 3" draggable="false" />
-            <span class="frame-number">A&O · 03</span>
-            <div class="frame-caption"><span class="frame-caption-year">2020</span><span class="frame-caption-text">Sunday morning light</span></div>
-          </div>
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1543807535-eceef0bc6599?w=600&auto=format&fit=crop&q=80" alt="Memory 4" draggable="false" />
-            <span class="frame-number">A&O · 04</span>
-            <div class="frame-caption"><span class="frame-caption-year">2021</span><span class="frame-caption-text">Road trips and wrong turns</span></div>
-          </div>
-        </div>
-        <div class="sprocket-row" id="sb1"></div>
-      </div>
-
-      <div class="reel-divider"><span></span><span></span><span></span></div>
-
-      <!-- REEL 2 -->
-      <div class="film-reel">
-        <div class="sprocket-row" id="st2"></div>
-        <div class="frame-row">
-          <div class="film-frame">
-            <img src="images/alex-olivia-formal-event.jpg" alt="Memory 5" draggable="false" />
-            <span class="frame-number">A&O · 05</span>
-            <div class="frame-caption"><span class="frame-caption-year">2021</span><span class="frame-caption-text">Dressed up somewhere nice</span></div>
-          </div>
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&auto=format&fit=crop&q=80" alt="Memory 6" draggable="false" />
-            <span class="frame-number">A&O · 06</span>
-            <div class="frame-caption"><span class="frame-caption-year">2022</span><span class="frame-caption-text">The evening we said let's stay</span></div>
-          </div>
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?w=600&auto=format&fit=crop&q=80" alt="Memory 7" draggable="false" />
-            <span class="frame-number">A&O · 07</span>
-            <div class="frame-caption"><span class="frame-caption-year">2022</span><span class="frame-caption-text">Home</span></div>
-          </div>
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&auto=format&fit=crop&q=80" alt="Memory 8" draggable="false" />
-            <span class="frame-number">A&O · 08</span>
-            <div class="frame-caption"><span class="frame-caption-year">2023</span><span class="frame-caption-text">Dancing in the kitchen</span></div>
-          </div>
-        </div>
-        <div class="sprocket-row" id="sb2"></div>
-      </div>
-
-      <div class="reel-divider"><span></span><span></span><span></span></div>
-
-      <!-- REEL 3 -->
-      <div class="film-reel">
-        <div class="sprocket-row" id="st3"></div>
-        <div class="frame-row">
-          <div class="film-frame">
-            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&auto=format&fit=crop&q=80" alt="Memory 9" draggable="false" />
-            <span class="frame-number">A&O · 09</span>
-            <div class="frame-caption"><span class="frame-caption-year">2023</span><span class="frame-caption-text">The proposal</span></div>
-          </div>
-          <div class="film-frame">
-            <img src="images/alex-olivia-summer-garden.jpg" alt="Memory 10" draggable="false" />
-            <span class="frame-number">A&O · 10</span>
-            <div class="frame-caption"><span class="frame-caption-year">2024</span><span class="frame-caption-text">Celebrating with family</span></div>
-          </div>
-          <div class="film-frame">
-            <img src="images/alex-olivia-open-water-swim.jpg" alt="Memory 11" draggable="false" />
-            <span class="frame-number">A&O · 11</span>
-            <div class="frame-caption"><span class="frame-caption-year">2024</span><span class="frame-caption-text">Adventures together</span></div>
-          </div>
-          <div class="film-frame">
-            <img src="images/alex-olivia-pool-france.jpg" alt="Memory 12" draggable="false" />
-            <span class="frame-number">A&O · 12</span>
-            <div class="frame-caption"><span class="frame-caption-year">2025</span><span class="frame-caption-text">We knew this was the place</span></div>
-          </div>
-        </div>
-        <div class="sprocket-row" id="sb3"></div>
-      </div>
-
+  <div class="container">
+    <div class="album-header">
+      <p class="album-eyebrow">Our Story in Photos</p>
+      <h2 class="album-title">A life together,<br><em>frame by frame</em></h2>
+      <p class="album-subtitle">Some of our favourite moments along the way.</p>
     </div>
-  </div>
-
-  <p class="drag-hint">
-    <span class="drag-arrow">←</span>
-    drag to explore
-    <span class="drag-arrow">→</span>
-  </p>
-  <div class="memories-tagline">
-    <p>"every frame, a reason to say yes."</p>
+    <div class="album-grid">
+      <div class="album-photo">
+        <img src="images/alex-olivia-henley-regatta.jpg" alt="Henley Regatta" />
+        <div class="photo-caption"><span class="photo-caption-year">2019</span><span class="photo-caption-text">Where it all began</span></div>
+      </div>
+      <div class="album-photo">
+        <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&auto=format&fit=crop&q=80" alt="Memory" />
+        <div class="photo-caption"><span class="photo-caption-year">2020</span><span class="photo-caption-text">Our first summer together</span></div>
+      </div>
+      <div class="album-photo">
+        <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=800&auto=format&fit=crop&q=80" alt="Memory" />
+        <div class="photo-caption"><span class="photo-caption-year">2020</span><span class="photo-caption-text">Sunday morning light</span></div>
+      </div>
+      <div class="album-photo">
+        <img src="https://images.unsplash.com/photo-1543807535-eceef0bc6599?w=800&auto=format&fit=crop&q=80" alt="Memory" />
+        <div class="photo-caption"><span class="photo-caption-year">2021</span><span class="photo-caption-text">Road trips and wrong turns</span></div>
+      </div>
+      <div class="album-photo">
+        <img src="images/alex-olivia-formal-event.jpg" alt="Formal event" />
+        <div class="photo-caption"><span class="photo-caption-year">2021</span><span class="photo-caption-text">Dressed up somewhere nice</span></div>
+      </div>
+      <div class="album-photo">
+        <img src="images/photo_006.heic" alt="Memory" />
+        <div class="photo-caption"><span class="photo-caption-year">2022</span><span class="photo-caption-text">The evening we said let's stay</span></div>
+      </div>
+      <div class="album-photo">
+        <img src="images/photo_004.heic" alt="Memory" />
+        <div class="photo-caption"><span class="photo-caption-year">2022</span><span class="photo-caption-text">Home</span></div>
+      </div>
+      <div class="album-photo">
+        <img src="images/photo_003.heic" alt="Memory" />
+        <div class="photo-caption"><span class="photo-caption-year">2023</span><span class="photo-caption-text">The proposal</span></div>
+      </div>
+      <div class="album-photo">
+        <img src="images/alex-olivia-summer-garden.jpg" alt="Summer garden" />
+        <div class="photo-caption"><span class="photo-caption-year">2024</span><span class="photo-caption-text">Celebrating with family</span></div>
+      </div>
+      <div class="album-photo">
+        <img src="images/alex-olivia-open-water-swim.jpg" alt="Open water swim" />
+        <div class="photo-caption"><span class="photo-caption-year">2024</span><span class="photo-caption-text">Adventures together</span></div>
+      </div>
+      <div class="album-photo">
+        <img src="images/alex-olivia-pool-france.jpg" alt="Pool in France" />
+        <div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text">Sun, pool, and good company</span></div>
+      </div>
+      <div class="album-photo">
+        <img src="images/photo_001.jpg" alt="Ronda" />
+        <div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text">We knew this was the place</span></div>
+      </div>
+    </div>
+    <p class="album-tagline">"every frame, a reason to say yes."</p>
   </div>
 </section>
 
@@ -1122,11 +985,11 @@
   <div class="footer-brand">Alex <em>&amp;</em> Olivia</div>
   <div class="footer-info">
     <p>3rd October 2026 · La Organica, Ronda, Spain</p>
-    <p>Questions? <a href="mailto:alexandoliviah@gmail.com" class="footer-contact">alexandoliviah@gmail.com</a></p>
+    <p>Questions? <a href="/cdn-cgi/l/email-protection#751419100d1a191c031c14021011111c1b1247454743351218141c195b161a18" class="footer-contact"><span class="__cf_email__" data-cfemail="5f3e333a2730333629363e283a3b3b3631386d6f6d691f38323e3633713c3032">[email&#160;protected]</span></a></p>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Nav scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
@@ -1163,72 +1026,12 @@
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.intro-grid, .rsvp-inner, .poi-card, .faq-item').forEach(el => {
+  document.querySelectorAll('.intro-grid, .rsvp-inner, .poi-card, .faq-item, .album-photo').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(28px)';
     el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
     observer.observe(el);
   });
-
-  // Sprocket holes
-  function fillSprockets(rowId, count) {
-    const row = document.getElementById(rowId);
-    if (!row) return;
-    for (let i = 0; i < count; i++) {
-      const hole = document.createElement('div');
-      hole.className = 'sprocket-hole';
-      row.appendChild(hole);
-    }
-  }
-  ['st1','sb1','st2','sb2','st3','sb3'].forEach(id => fillSprockets(id, 18));
-
-  // Filmstrip drag-to-scroll
-  const outer = document.getElementById('filmstripOuter');
-  if (outer) {
-    let isDragging = false, startX = 0, scrollLeft = 0;
-    outer.addEventListener('mousedown', e => {
-      isDragging = true;
-      startX = e.pageX - outer.offsetLeft;
-      scrollLeft = outer.scrollLeft;
-      outer.style.cursor = 'grabbing';
-    });
-    outer.addEventListener('mouseleave', () => { isDragging = false; outer.style.cursor = 'grab'; });
-    outer.addEventListener('mouseup', () => { isDragging = false; outer.style.cursor = 'grab'; });
-    outer.addEventListener('mousemove', e => {
-      if (!isDragging) return;
-      e.preventDefault();
-      outer.scrollLeft = scrollLeft - (e.pageX - outer.offsetLeft - startX) * 1.4;
-    });
-    outer.addEventListener('touchstart', e => {
-      startX = e.touches[0].pageX;
-      scrollLeft = outer.scrollLeft;
-    }, { passive: true });
-    outer.addEventListener('touchmove', e => {
-      outer.scrollLeft = scrollLeft - (e.touches[0].pageX - startX);
-    }, { passive: true });
-  }
-
-  // Filmstrip fade-in
-  const memoriesSection = document.getElementById('memories');
-  if (memoriesSection) {
-    const filmObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          memoriesSection.querySelectorAll('.film-frame').forEach((frame, i) => {
-            frame.style.opacity = '0';
-            frame.style.transform = 'translateY(20px)';
-            frame.style.transition = `opacity 0.7s ease ${i * 0.06}s, transform 0.7s ease ${i * 0.06}s`;
-            requestAnimationFrame(() => {
-              frame.style.opacity = '1';
-              frame.style.transform = 'translateY(0)';
-            });
-          });
-          filmObserver.unobserve(memoriesSection);
-        }
-      });
-    }, { threshold: 0.1 });
-    filmObserver.observe(memoriesSection);
-  }
 </script>
 </body>
 </html>
