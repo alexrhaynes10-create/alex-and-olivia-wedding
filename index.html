@@ -46,26 +46,24 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 3rem;
-      background: rgba(220, 237, 247, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(190, 220, 238, 0.45);
+      background: #034694;
+      border-bottom: 1px solid rgba(0, 30, 80, 0.3);
       transition: background 0.4s;
     }
     nav.scrolled {
-      background: rgba(220, 237, 247, 0.98);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(190, 220, 238, 0.55);
+      background: #034694;
+      border-bottom: 1px solid rgba(0, 30, 80, 0.4);
     }
     .nav-logo {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.1rem;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.08em;
-      color: var(--dark);
+      color: #ffffff;
       text-decoration: none;
       transition: color 0.4s;
     }
-    nav.scrolled .nav-logo { color: var(--dark); }
+    nav.scrolled .nav-logo { color: #ffffff; }
 
     .nav-links {
       display: flex;
@@ -74,15 +72,15 @@
     }
     .nav-links a {
       font-size: 0.7rem;
-      font-weight: 400;
+      font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--dark);
+      color: #ffffff;
       text-decoration: none;
       transition: color 0.3s;
     }
-    nav.scrolled .nav-links a { color: var(--dark); }
-    .nav-links a:hover { color: var(--terracotta) !important; }
+    nav.scrolled .nav-links a { color: #ffffff; }
+    .nav-links a:hover { color: rgba(255,255,255,0.65) !important; }
 
     /* ── HERO ── */
     .hero {
@@ -351,7 +349,8 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      margin-top: 0.5rem;
+      margin-top: 0.75rem;
+      margin-right: 0;
       font-size: 0.75rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -361,6 +360,8 @@
       padding-bottom: 2px;
       transition: color 0.3s, border-color 0.3s;
     }
+    .poi-map-link + .poi-map-link { margin-top: 0.6rem; }
+    .poi-header .poi-map-link { display: flex; width: fit-content; margin-left: auto; margin-right: auto; }
     .poi-map-link:hover { color: var(--earth); border-color: var(--earth); }
     .poi-map-link svg { flex-shrink: 0; }
     .poi-grid {
@@ -757,10 +758,16 @@
       <h2>Exploring Ronda</h2>
       <p>Perched above a dramatic gorge in the Andalusian mountains, Ronda is one of Spain's most extraordinary towns. Here are our favourite spots to make a proper trip of it.</p>
       <p>We've also put together a carefully curated map of our favourite places — restaurants, viewpoints, hidden corners, and everything in between.</p>
-      <a href="https://maps.app.goo.gl/hNSpXKkab38fdyTD8" target="_blank" rel="noopener" class="poi-map-link">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        View our Ronda map
-      </a>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;margin-top:1rem;">
+        <a href="https://maps.app.goo.gl/hNSpXKkab38fdyTD8" target="_blank" rel="noopener" class="poi-map-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          View our Ronda map
+        </a>
+        <a href="https://strava.app.link/201Clyhbl1b" target="_blank" rel="noopener" class="poi-map-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+          Local running route — hilly, tried &amp; tested
+        </a>
+      </div>
     </div>
     <div class="poi-grid">
       <div class="poi-card">
@@ -809,7 +816,7 @@
         </div>
       </div>
       <div class="poi-card">
-        <img src="images/photo_001.jpg" alt="Local Wineries" />
+        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&auto=format&fit=crop&q=80" alt="Local Wineries" />
         <div class="poi-overlay">
           <p class="poi-type">Wine & Food</p>
           <p class="poi-name">Ronda Wine Route</p>
@@ -844,15 +851,15 @@
         <div class="photo-caption"><span class="photo-caption-year">2019</span><span class="photo-caption-text">Where it all began</span></div>
       </div>
       <div class="album-photo">
-        <img src="images/photo_002.jpg" alt="Memory" />
+        <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&auto=format&fit=crop&q=80" alt="Memory" />
         <div class="photo-caption"><span class="photo-caption-year">2020</span><span class="photo-caption-text">Our first summer together</span></div>
       </div>
       <div class="album-photo">
-        <img src="images/photo_003.jpg" />
+        <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=800&auto=format&fit=crop&q=80" alt="Memory" />
         <div class="photo-caption"><span class="photo-caption-year">2020</span><span class="photo-caption-text">Sunday morning light</span></div>
       </div>
       <div class="album-photo">
-        <img src="images/photo_001.jpg" alt="Memory" />
+        <img src="https://images.unsplash.com/photo-1543807535-eceef0bc6599?w=800&auto=format&fit=crop&q=80" alt="Memory" />
         <div class="photo-caption"><span class="photo-caption-year">2021</span><span class="photo-caption-text">Road trips and wrong turns</span></div>
       </div>
       <div class="album-photo">
@@ -860,15 +867,15 @@
         <div class="photo-caption"><span class="photo-caption-year">2021</span><span class="photo-caption-text">Dressed up somewhere nice</span></div>
       </div>
       <div class="album-photo">
-        <img src="images/photo_006.heic" alt="Memory" />
+        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&auto=format&fit=crop&q=80" alt="Memory" />
         <div class="photo-caption"><span class="photo-caption-year">2022</span><span class="photo-caption-text">The evening we said let's stay</span></div>
       </div>
       <div class="album-photo">
-        <img src="images/photo_006.jpg" alt="Memory" />
+        <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=800&auto=format&fit=crop&q=80" alt="Memory" />
         <div class="photo-caption"><span class="photo-caption-year">2022</span><span class="photo-caption-text">Home</span></div>
       </div>
       <div class="album-photo">
-        <img src="images/photo_004.jpg" alt="Memory" />
+        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&auto=format&fit=crop&q=80" alt="Memory" />
         <div class="photo-caption"><span class="photo-caption-year">2023</span><span class="photo-caption-text">The proposal</span></div>
       </div>
       <div class="album-photo">
@@ -884,7 +891,7 @@
         <div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text">Sun, pool, and good company</span></div>
       </div>
       <div class="album-photo">
-        <img src="images/photo_001.jpg" alt="Ronda" />
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop&q=80" alt="Ronda" />
         <div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text">We knew this was the place</span></div>
       </div>
     </div>
