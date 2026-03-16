@@ -139,7 +139,7 @@
 
     .hero-title-wrap {
       opacity: 0;
-      animation: fadeUp 1s 0.5s forwards, flicker 8s 2s infinite;
+      animation: fadeUp 1s 0.5s forwards;
     }
 
     .hero-nav-title {
@@ -150,11 +150,11 @@
       text-transform: uppercase;
       line-height: 1.0;
       color: #ffffff;
-      text-shadow: 2px 2px 0px rgba(0,0,0,0.4);
       margin-bottom: 0.5rem;
       display: block;
     }
 
+    /* Names — clean blue, no shadow */
     .hero-title {
       font-family: 'Oswald', sans-serif;
       font-weight: 700;
@@ -163,20 +163,13 @@
       text-transform: uppercase;
       line-height: 1.0;
       color: #034694;
-      text-shadow:
-        4px 4px 0px #022f6e,
-        8px 8px 0px rgba(0,0,0,0.4),
-        0 0 60px rgba(3,70,148,0.25);
-      -webkit-text-stroke: 1px #022f6e;
       margin-bottom: 0.6rem;
     }
+    /* Ampersand — pure white, no shadow */
     .hero-title .ampersand {
-      color: #5588cc;
-      text-shadow:
-        3px 3px 0px #034694,
-        6px 6px 0px rgba(0,0,0,0.4);
-      -webkit-text-stroke: 1px #034694;
+      color: #ffffff;
     }
+
     .hero-title-divider {
       display: flex;
       align-items: center;
@@ -316,10 +309,6 @@
       margin-bottom: 2rem;
       color: var(--dark);
     }
-    .intro-text h2 em {
-      font-style: normal;
-      color: var(--terracotta);
-    }
     .intro-text p {
       color: var(--muted);
       margin-bottom: 1.2rem;
@@ -374,9 +363,7 @@
       color: var(--terracotta);
       margin-bottom: 0.3rem;
     }
-    .day-block.day-saturday .day-label {
-      color: rgba(255,255,255,0.6);
-    }
+    .day-block.day-saturday .day-label { color: rgba(255,255,255,0.6); }
     .day-name {
       font-family: 'Oswald', sans-serif;
       font-size: 1.8rem;
@@ -387,10 +374,7 @@
       margin-bottom: 1.5rem;
       line-height: 1.1;
     }
-    .day-block.day-saturday .day-name {
-      font-size: 2.2rem;
-      color: #ffffff;
-    }
+    .day-block.day-saturday .day-name { font-size: 2.2rem; color: #ffffff; }
     .day-events { list-style: none; }
     .day-event {
       display: flex;
@@ -399,9 +383,7 @@
       padding-bottom: 1.2rem;
       border-bottom: 1px solid var(--line);
     }
-    .day-block.day-saturday .day-event {
-      border-bottom-color: rgba(255,255,255,0.15);
-    }
+    .day-block.day-saturday .day-event { border-bottom-color: rgba(255,255,255,0.15); }
     .day-event:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .event-time {
       font-family: 'Oswald', sans-serif;
@@ -412,9 +394,7 @@
       color: var(--terracotta);
       margin-bottom: 0.25rem;
     }
-    .day-block.day-saturday .event-time {
-      color: rgba(255,255,255,0.6);
-    }
+    .day-block.day-saturday .event-time { color: rgba(255,255,255,0.6); }
     .event-name {
       font-family: 'Oswald', sans-serif;
       font-size: 1.1rem;
@@ -424,10 +404,7 @@
       color: var(--dark);
       margin-bottom: 0.2rem;
     }
-    .day-block.day-saturday .event-name {
-      color: #ffffff;
-      font-size: 1.2rem;
-    }
+    .day-block.day-saturday .event-name { color: #ffffff; font-size: 1.2rem; }
     .event-detail {
       font-size: 0.82rem;
       font-weight: 500;
@@ -435,15 +412,7 @@
       margin-top: 0.1rem;
       line-height: 1.5;
     }
-    .day-block.day-saturday .event-detail {
-      color: rgba(255,255,255,0.82);
-    }
-    .day-tbc {
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--muted);
-      line-height: 1.5;
-    }
+    .day-block.day-saturday .event-detail { color: rgba(255,255,255,0.82); }
 
     /* ── DIVIDER ── */
     .divider {
@@ -489,7 +458,6 @@
       text-transform: uppercase;
       color: var(--terracotta);
     }
-
     .rsvp-link-block {
       background: var(--warm-white);
       padding: 3rem 2.5rem;
@@ -520,10 +488,7 @@
       padding: 1rem 2rem;
       transition: background 0.3s, transform 0.2s;
     }
-    .rsvp-cta-btn:hover {
-      background: #022f6e;
-      transform: translateY(-1px);
-    }
+    .rsvp-cta-btn:hover { background: #022f6e; transform: translateY(-1px); }
     .rsvp-cta-btn svg { flex-shrink: 0; }
     .rsvp-note {
       font-size: 0.78rem !important;
@@ -650,16 +615,8 @@
       pointer-events: none;
       box-shadow: 0 8px 32px rgba(0,0,0,0.25);
     }
-    .music-player.visible {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: all;
-    }
-    .music-player.dismissed {
-      opacity: 0;
-      transform: translateY(20px);
-      pointer-events: none;
-    }
+    .music-player.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
+    .music-player.dismissed { opacity: 0; transform: translateY(20px); pointer-events: none; }
     .music-btn {
       width: 36px;
       height: 36px;
@@ -675,12 +632,7 @@
       transition: background 0.2s;
     }
     .music-btn:hover { background: rgba(255,255,255,0.25); }
-    .music-info {
-      display: flex;
-      flex-direction: column;
-      gap: 0.05rem;
-      min-width: 0;
-    }
+    .music-info { display: flex; flex-direction: column; gap: 0.05rem; min-width: 0; }
     .music-label {
       font-family: 'Oswald', sans-serif;
       font-size: 0.55rem;
@@ -713,10 +665,7 @@
     .music-close:hover { color: rgba(255,255,255,0.9); }
 
     /* ── PHOTO ALBUM ── */
-    #memories {
-      background: var(--warm-white);
-      padding: 7rem 0;
-    }
+    #memories { background: var(--warm-white); padding: 7rem 0; }
     .album-header {
       text-align: center;
       max-width: 560px;
@@ -735,8 +684,7 @@
       justify-content: center;
       gap: 1rem;
     }
-    .album-eyebrow::before,
-    .album-eyebrow::after {
+    .album-eyebrow::before, .album-eyebrow::after {
       content: '';
       width: 40px;
       height: 1px;
@@ -750,37 +698,20 @@
       margin-bottom: 1rem;
     }
     .album-subtitle { color: var(--muted); font-size: 0.9rem; }
-
-    .album-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
+    .album-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
     .album-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
     }
-    .album-photo {
-      position: relative;
-      overflow: hidden;
-      background: var(--cream);
-    }
-    .album-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.6s ease;
-    }
+    .album-photo { position: relative; overflow: hidden; background: var(--cream); }
+    .album-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
     .album-photo:hover img { transform: scale(1.04); }
     .album-photo.tall { aspect-ratio: 3/4; }
     .album-photo.wide { aspect-ratio: 16/9; }
     .album-photo.square { aspect-ratio: 1/1; }
     .album-photo.span2 { grid-column: span 2; aspect-ratio: 16/9; }
     .album-photo.span3 { grid-column: span 3; aspect-ratio: 21/9; }
-
     .album-photo .photo-caption {
       position: absolute;
       bottom: 0; left: 0; right: 0;
@@ -808,7 +739,6 @@
       color: var(--cream);
       line-height: 1.3;
     }
-
     .album-tagline {
       text-align: center;
       margin-top: 3rem;
@@ -821,17 +751,10 @@
     }
 
     /* ── FAQs ── */
-    #faqs {
-      background: var(--dark);
-      color: var(--cream);
-    }
+    #faqs { background: var(--dark); color: var(--cream); }
     #faqs .section-label { color: #e8c9a8; }
     #faqs .section-label::after { background: var(--terracotta); opacity: 0.4; }
-    .faq-layout {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 5rem;
-    }
+    .faq-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; }
     .faq-sidebar h2 {
       font-size: clamp(2rem, 3.5vw, 3rem);
       line-height: 1.15;
@@ -839,10 +762,7 @@
       position: sticky;
       top: 120px;
     }
-    .faq-sidebar h2 em {
-      font-style: normal;
-      color: #e8c9a8;
-    }
+    .faq-sidebar h2 em { font-style: normal; color: #e8c9a8; }
     .faq-list { border-top: 1px solid rgba(245,240,232,0.1); }
     .faq-item { border-bottom: 1px solid rgba(245,240,232,0.1); overflow: hidden; }
     .faq-q {
@@ -877,11 +797,7 @@
       font-size: 0.75rem;
       transition: transform 0.3s, border-color 0.3s, color 0.3s;
     }
-    .faq-item.open .faq-icon {
-      transform: rotate(45deg);
-      border-color: var(--terracotta);
-      color: var(--terracotta);
-    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); border-color: var(--terracotta); color: var(--terracotta); }
     .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
     .faq-a-inner {
       padding-bottom: 1.8rem;
@@ -890,7 +806,35 @@
       font-weight: 500;
       line-height: 1.8;
     }
-    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-item.open .faq-a { max-height: 600px; }
+
+    /* Hotel list in FAQ */
+    .hotel-list {
+      list-style: none;
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .hotel-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      color: rgba(245,240,232,0.85);
+    }
+    .hotel-list li::before {
+      content: '—';
+      color: var(--terracotta);
+      flex-shrink: 0;
+    }
+    .hotel-list a {
+      color: #a8c4e8;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(168,196,232,0.35);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .hotel-list a:hover { color: #c8daf0; border-color: rgba(200,218,240,0.6); }
 
     /* ── FOOTER ── */
     footer {
@@ -913,18 +857,8 @@
     }
     .footer-brand .amp { color: var(--terracotta); }
     .footer-info { text-align: right; }
-    .footer-info p {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-    .footer-contact {
-      font-size: 0.72rem;
-      color: var(--terracotta);
-      text-decoration: none;
-      letter-spacing: 0.08em;
-    }
+    .footer-info p { font-size: 0.72rem; letter-spacing: 0.1em; color: var(--muted); line-height: 1.8; }
+    .footer-contact { font-size: 0.72rem; color: var(--terracotta); text-decoration: none; letter-spacing: 0.08em; }
     .footer-contact:hover { color: var(--earth); }
 
     /* ── MOBILE ── */
@@ -932,7 +866,7 @@
       nav { padding: 1.2rem 1.5rem; }
       .nav-links { display: none; }
       .hero-content { padding: 0 1.5rem 4rem; }
-      .hero-scroll { right: 1.5rem; }
+      .hero-scroll { display: flex; right: 1.5rem; } /* ensure visible on mobile */
       .container, .container-narrow { padding: 0 1.5rem; }
       section { padding: 5rem 0; }
       .intro-grid, .rsvp-inner, .faq-layout { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -948,7 +882,8 @@
       footer { flex-direction: column; text-align: center; }
       .footer-info { text-align: center; }
       .rsvp-link-block { padding: 2rem 1.5rem; }
-      .music-player { bottom: 1rem; right: 1rem; }
+      .music-player { bottom: 1rem; right: 1rem; left: 1rem; right: 1rem; border-radius: 40px; }
+      .music-title { max-width: 120px; }
     }
   </style>
 </head>
@@ -974,6 +909,7 @@
   <div class="hero-content">
     <p class="hero-eyebrow">Together with their families</p>
     <div class="hero-title-wrap">
+      <span class="hero-nav-title">A &amp; O &nbsp;—&nbsp; 2026</span>
       <div class="hero-title">Alex</div>
       <div class="hero-title"><span class="ampersand">&amp;</span> Olivia</div>
       <div class="hero-title-divider">
@@ -1000,11 +936,10 @@
       <div class="intro-text">
         <h2>The Weekend Agenda</h2>
         <p>Welcome to our closest and most beautiful friends and family.</p>
-        <p>We would love you to celebrate our marriage with us in southern Spain in early autumn. Warm evenings, long tables filled with local food and plenty of wine is the plan.</p>
-        <p>Ronda has a special connection with the Hurrells, and honestly… who really needs an excuse for a Spanish wedding? We will provide updates and further details on this page as we get closer to the date.</p>
+        <p>We would love you to celebrate our marriage with us in southern Spain in early autumn. Think warm evenings, long tables filled with local food and wine, and a night of dancing — we can't wait to share it!</p>
+        <p>The Hurrells have a close connection with Southern Spain, and honestly… who really needs an excuse for a Spanish wedding? We will provide updates and further details on this page as we get closer to the date.</p>
 
         <div class="weekend-schedule">
-          <!-- Friday -->
           <div class="day-block">
             <p class="day-label">2nd October</p>
             <h3 class="day-name">Friday</h3>
@@ -1016,8 +951,6 @@
               </li>
             </ul>
           </div>
-
-          <!-- Saturday -->
           <div class="day-block day-saturday">
             <p class="day-label">3rd October</p>
             <h3 class="day-name">Saturday</h3>
@@ -1025,7 +958,7 @@
               <li class="day-event">
                 <span class="event-time">3:00 pm</span>
                 <span class="event-name">Arrivals</span>
-                <span class="event-detail">Shuttle from Parador Hotel, Ronda. To be seated by 3.45pm.</span>
+                <span class="event-detail">Shuttle from town center to be seated by 3.45pm at the venue.</span>
               </li>
               <li class="day-event">
                 <span class="event-time">4:00 pm</span>
@@ -1039,8 +972,6 @@
               </li>
             </ul>
           </div>
-
-          <!-- Sunday -->
           <div class="day-block">
             <p class="day-label">4th October</p>
             <h3 class="day-name">Sunday</h3>
@@ -1054,7 +985,6 @@
           </div>
         </div>
       </div>
-
       <div class="intro-image">
         <img src="images/cortijo_01.jpg" alt="Ronda, Spain" />
       </div>
@@ -1073,9 +1003,8 @@
         <h2>Let us know you're coming</h2>
         <p>We'd love to know you'll be joining us in Ronda. Please fill in the form <strong>at your earliest convenience</strong> so we can plan ahead.</p>
         <p>If you have any questions or need help with travel, please don't hesitate to reach out directly.</p>
-        <div class="rsvp-deadline">Kindly respond by 1 April</div>
+        <div class="rsvp-deadline">Kindly respond as soon as possible, and no later than 1 July.</div>
       </div>
-
       <div class="rsvp-link-block">
         <p>Click the link below to open our RSVP form. It takes just a minute to complete — works perfectly on mobile too.</p>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSegAbgzpZtCrnKrW9Vs4mtPBIV3ftAvW4GUUBX6ZPMRVWJGjQ/viewform" target="_blank" rel="noopener" class="rsvp-cta-btn">
@@ -1177,105 +1106,28 @@
   </div>
   <div class="album-container">
     <div class="album-grid">
-
-      <div class="album-photo tall">
-        <img src="images/alex-olivia-henley-regatta.jpg" alt="Henley Regatta" />
-        <div class="photo-caption"><span class="photo-caption-year">2019</span><span class="photo-caption-text">Henley Regatta</span></div>
-      </div>
-      <div class="album-photo tall">
-        <img src="images/couple_sailboat_sunset_greece.jpg" alt="Greece" />
-        <div class="photo-caption"><span class="photo-caption-year">2019</span><span class="photo-caption-text">Pretending to know how to sail.</span></div>
-      </div>
-      <div class="album-photo tall">
-        <img src="images/couple_sailboat_snorkeling_greece.jpg" alt="Greece" />
-        <div class="photo-caption"><span class="photo-caption-year">2019</span><span class="photo-caption-text">Greece</span></div>
-      </div>
-
-      <div class="album-photo span2">
-        <img src="images/photo_007.jpg" alt="Memory" />
-        <div class="photo-caption"><span class="photo-caption-year">2020</span><span class="photo-caption-text"></span></div>
-      </div>
-      <div class="album-photo square">
-        <img src="images/couple_running_gear_selfie.jpg" alt="Memory" />
-        <div class="photo-caption"><span class="photo-caption-year">2020</span><span class="photo-caption-text"></span></div>
-      </div>
-
-      <div class="album-photo tall">
-        <img src="images/photo_010.jpg" alt="Memory" />
-        <div class="photo-caption"><span class="photo-caption-year">2020</span><span class="photo-caption-text"></span></div>
-      </div>
-      <div class="album-photo tall">
-        <img src="images/photo_012.jpg" alt="Memory" />
-        <div class="photo-caption"><span class="photo-caption-year">2021</span><span class="photo-caption-text"></span></div>
-      </div>
-      <div class="album-photo tall">
-        <img src="images/alex-olivia-formal-event.jpg" alt="Formal event" />
-        <div class="photo-caption"><span class="photo-caption-year">2021</span><span class="photo-caption-text"></span></div>
-      </div>
-
-      <div class="album-photo span3">
-        <img src="images/image_6.jpg" alt="Memory" />
-        <div class="photo-caption"><span class="photo-caption-year">2022</span><span class="photo-caption-text">Tignes</span></div>
-      </div>
-
-      <div class="album-photo square">
-        <img src="images/photo_014.jpg" alt="Memory" />
-        <div class="photo-caption"><span class="photo-caption-year">2022</span><span class="photo-caption-text">Home</span></div>
-      </div>
-      <div class="album-photo span2">
-        <img src="images/alex-olivia-pool-france.jpg" alt="Memory" />
-        <div class="photo-caption"><span class="photo-caption-year">2023</span><span class="photo-caption-text">France</span></div>
-      </div>
-
-      <div class="album-photo tall">
-        <img src="images/alex-olivia-summer-garden.jpg" alt="Summer garden" />
-        <div class="photo-caption"><span class="photo-caption-year">2024</span><span class="photo-caption-text">Cake</span></div>
-      </div>
-      <div class="album-photo tall">
-        <img src="images/alex-olivia-open-water-swim.jpg" alt="Open water swim" />
-        <div class="photo-caption"><span class="photo-caption-year">2024</span><span class="photo-caption-text"></span></div>
-      </div>
-      <div class="album-photo tall">
-        <img src="images/photo_013.jpg" alt="Pool in France" />
-        <div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text">Somewhere in Indonesia.</span></div>
-      </div>
-
-      <div class="album-photo span2">
-        <img src="images/woman_guinness_pub_dublin.jpg" alt="Belfast" />
-        <div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text">Belfast</span></div>
-      </div>
-      <div class="album-photo square">
-        <img src="images/image_7.jpg" alt="Memory" />
-        <div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text"></span></div>
-      </div>
-
-      <div class="album-photo tall">
-        <img src="images/image_8.jpg" alt="Memory" />
-        <div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text"></span></div>
-      </div>
-      <div class="album-photo tall">
-        <img src="images/image_1.jpg" alt="Memory" />
-        <div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text"></span></div>
-      </div>
-      <div class="album-photo tall">
-        <img src="images/image_2.jpg" alt="Memory" />
-        <div class="photo-caption"><span class="photo-caption-year">2026</span><span class="photo-caption-text"></span></div>
-      </div>
-
-      <div class="album-photo span2">
-        <img src="images/couple_wading_tropical_beach.jpg" alt="Mexico" />
-        <div class="photo-caption"><span class="photo-caption-year">2022</span><span class="photo-caption-text">Mexico</span></div>
-      </div>
-      <div class="album-photo square">
-        <img src="images/woman_yellow_dress_garden_party_cake.jpg" alt="Garden party" />
-        <div class="photo-caption"><span class="photo-caption-year">2024</span><span class="photo-caption-text"></span></div>
-      </div>
-
-      <div class="album-photo span3">
-        <img src="images/image_5.jpg" alt="Pembrokeshire" />
-        <div class="photo-caption"><span class="photo-caption-year">2021</span><span class="photo-caption-text">Practice in Pembrokeshire!</span></div>
-      </div>
-
+      <div class="album-photo tall"><img src="images/alex-olivia-henley-regatta.jpg" alt="Henley Regatta" /><div class="photo-caption"><span class="photo-caption-year">2019</span><span class="photo-caption-text">Henley Regatta</span></div></div>
+      <div class="album-photo tall"><img src="images/couple_sailboat_sunset_greece.jpg" alt="Greece" /><div class="photo-caption"><span class="photo-caption-year">2019</span><span class="photo-caption-text">Pretending to know how to sail.</span></div></div>
+      <div class="album-photo tall"><img src="images/couple_sailboat_snorkeling_greece.jpg" alt="Greece" /><div class="photo-caption"><span class="photo-caption-year">2019</span><span class="photo-caption-text">Greece</span></div></div>
+      <div class="album-photo span2"><img src="images/photo_007.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2020</span><span class="photo-caption-text"></span></div></div>
+      <div class="album-photo square"><img src="images/couple_running_gear_selfie.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2020</span><span class="photo-caption-text"></span></div></div>
+      <div class="album-photo tall"><img src="images/photo_010.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2020</span><span class="photo-caption-text"></span></div></div>
+      <div class="album-photo tall"><img src="images/photo_012.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2021</span><span class="photo-caption-text"></span></div></div>
+      <div class="album-photo tall"><img src="images/alex-olivia-formal-event.jpg" alt="Formal event" /><div class="photo-caption"><span class="photo-caption-year">2021</span><span class="photo-caption-text"></span></div></div>
+      <div class="album-photo span3"><img src="images/image_6.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2022</span><span class="photo-caption-text">Tignes</span></div></div>
+      <div class="album-photo square"><img src="images/photo_014.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2022</span><span class="photo-caption-text">Home</span></div></div>
+      <div class="album-photo span2"><img src="images/alex-olivia-pool-france.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2023</span><span class="photo-caption-text">France</span></div></div>
+      <div class="album-photo tall"><img src="images/alex-olivia-summer-garden.jpg" alt="Summer garden" /><div class="photo-caption"><span class="photo-caption-year">2024</span><span class="photo-caption-text">Cake</span></div></div>
+      <div class="album-photo tall"><img src="images/alex-olivia-open-water-swim.jpg" alt="Open water swim" /><div class="photo-caption"><span class="photo-caption-year">2024</span><span class="photo-caption-text"></span></div></div>
+      <div class="album-photo tall"><img src="images/photo_013.jpg" alt="Indonesia" /><div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text">Somewhere in Indonesia.</span></div></div>
+      <div class="album-photo span2"><img src="images/woman_guinness_pub_dublin.jpg" alt="Belfast" /><div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text">Belfast</span></div></div>
+      <div class="album-photo square"><img src="images/image_7.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text"></span></div></div>
+      <div class="album-photo tall"><img src="images/image_8.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text"></span></div></div>
+      <div class="album-photo tall"><img src="images/image_1.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text"></span></div></div>
+      <div class="album-photo tall"><img src="images/image_2.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2026</span><span class="photo-caption-text"></span></div></div>
+      <div class="album-photo span2"><img src="images/couple_wading_tropical_beach.jpg" alt="Mexico" /><div class="photo-caption"><span class="photo-caption-year">2022</span><span class="photo-caption-text">Mexico</span></div></div>
+      <div class="album-photo square"><img src="images/woman_yellow_dress_garden_party_cake.jpg" alt="Garden party" /><div class="photo-caption"><span class="photo-caption-year">2024</span><span class="photo-caption-text"></span></div></div>
+      <div class="album-photo span3"><img src="images/image_5.jpg" alt="Pembrokeshire" /><div class="photo-caption"><span class="photo-caption-year">2021</span><span class="photo-caption-text">Practice in Pembrokeshire!</span></div></div>
     </div>
     <p class="album-tagline"></p>
   </div>
@@ -1291,54 +1143,74 @@
       </div>
       <div>
         <div class="faq-list">
+
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">How do I get to Ronda?<span class="faq-icon">+</span></button>
             <div class="faq-a" role="region">
-              <div class="faq-a-inner">The nearest airports are Málaga (1 hour drive) and Seville (1.5 hours). Both have excellent connections from the UK and Europe. There's also a scenic train from Málaga or from Seville if you'd prefer to arrive by rail. We'll be sharing more detailed travel notes closer to the date.</div>
+              <div class="faq-a-inner">The nearest airports are Málaga (1 hour drive) and Seville (1.5 hours). Both have excellent connections from the UK and Europe. There's also a scenic train from Málaga or Seville if you'd prefer to arrive by rail. We'll be sharing more detailed travel notes closer to the date.</div>
             </div>
           </div>
+
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">Where should I stay in Ronda?<span class="faq-icon">+</span></button>
             <div class="faq-a" role="region">
-              <div class="faq-a-inner">Ronda itself has wonderful places to stay. We recommend the Parador de Ronda for something special (book early), or Hotel Catalonia Ronda as a lovely mid-range option. There are also beautiful rural fincas in the surrounding countryside if you'd like to make a proper retreat of it.</div>
+              <div class="faq-a-inner">
+                Ronda has wonderful places to stay at every price point. Book early — October fills up fast. Here are some options we'd recommend:
+                <ul class="hotel-list">
+                  <li><a href="https://www.parador.es/en/paradores/parador-de-ronda" target="_blank" rel="noopener">Parador de Ronda</a> — iconic gorge-edge views, special occasion stay</li>
+                  <li><a href="https://www.casapalaciovillazambra.com" target="_blank" rel="noopener">Casa Palacio VillaZambra</a> — beautiful boutique palace</li>
+                  <li><a href="https://www.palaciodeladuquesa.com" target="_blank" rel="noopener">Hotel Boutique Palacio de la Duquesa</a> — elegant old town option</li>
+                  <li><a href="https://www.hotelmontelirio.com" target="_blank" rel="noopener">Hotel Montelirio</a> — stylish clifftop boutique</li>
+                  <li><a href="https://www.sohohoteles.com" target="_blank" rel="noopener">Soho Boutique Palacio San Gabriel</a> — charming mid-range pick</li>
+                  <li><a href="https://www.booking.com/city/es/ronda.html" target="_blank" rel="noopener">Apartments via Booking.com</a> — great private options in the Old Town</li>
+                  <li><a href="https://www.airbnb.com/s/Ronda--Spain" target="_blank" rel="noopener">Airbnb Ronda</a> — good for groups or longer stays</li>
+                </ul>
+              </div>
             </div>
           </div>
+
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">What is the dress code?<span class="faq-icon">+</span></button>
             <div class="faq-a" role="region">
               <div class="faq-a-inner">Summer formal — let's celebrate colour. The brighter the better!</div>
             </div>
           </div>
+
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">Is there transport to and from the venue?<span class="faq-icon">+</span></button>
             <div class="faq-a" role="region">
-              <div class="faq-a-inner">Yes — if enough people are staying walking distance from Ronda centre, we hope to arrange a shuttle service to/from the venue (10 mins drive) from outside the Parador hotel. This will shuttle from 3–3.30 to ensure all guests are on site and seated by 3.45. It will then run on demand back to Ronda all night. If you are staying outside of Ronda please see taxi information.</div>
+              <div class="faq-a-inner">Yes — we plan to arrange a shuttle service to/from the venue (10 mins drive) departing from outside the Parador hotel. Shuttles will run from 3–3.30pm to ensure all guests are seated by 3.45pm, then on demand back to Ronda throughout the evening. If you're staying outside Ronda, please use a local taxi.</div>
             </div>
           </div>
+
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">What's the weather like in October?<span class="faq-icon">+</span></button>
             <div class="faq-a" role="region">
               <div class="faq-a-inner">Early October in Ronda is warm during the day (22–26°C), clear skies, and cool evenings. Sunscreen during the afternoon ceremony is a good idea.</div>
             </div>
           </div>
+
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">Are children welcome?<span class="faq-icon">+</span></button>
             <div class="faq-a" role="region">
-              <div class="faq-a-inner">We love your children dearly, but we've chosen to make our day an adults-only celebration (18+) so that everyone — parents most of all — can truly let their hair down. We hope you understand and can arrange childcare. If this presents any difficulty please get in touch and we'll do our best to help.</div>
+              <div class="faq-a-inner">We love your children dearly, but we've chosen to make our day an adults-only celebration (18+). This is due to both the capacity and suitability of the venue. Please let us know if you'd like information about babysitters in the area — we're happy to help.</div>
             </div>
           </div>
+
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">What about gifts?<span class="faq-icon">+</span></button>
             <div class="faq-a" role="region">
               <div class="faq-a-inner">Honestly, making the trip to Spain with us is the most generous gift we could ask for. If you'd like to contribute something, we have a small honeymoon fund — details will be shared with your paper invitation. No obligation whatsoever.</div>
             </div>
           </div>
+
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">Can I take photos during the ceremony?<span class="faq-icon">+</span></button>
             <div class="faq-a" role="region">
-              <div class="faq-a-inner">We would really love this to be a phone-free wedding as much as possible, however appreciate that guests would like to take their own photos — we are happy for you to do this but please ensure phones are away when not taking photos. We have 2 photographers to capture the occasion to ensure you are able to enjoy it in real life and not through your screen!</div>
+              <div class="faq-a-inner">We'd love this to be a phone-free wedding as much as possible. We're happy for guests to take their own photos, but please ensure phones are put away when not in use. We have two photographers on the day — so you can enjoy it in real life rather than through a screen!</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1354,14 +1226,10 @@
   </div>
 </footer>
 
-<!-- ── MUSIC PLAYER ── -->
-<iframe id="yt-player"
-  src="https://www.youtube.com/embed/DL7-CKirWZE?enablejsapi=1&autoplay=0&controls=0&loop=1&playlist=DL7-CKirWZE"
-  style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;left:-9999px;"
-  allow="autoplay"
-  frameborder="0">
-</iframe>
+<!-- ── HIDDEN YOUTUBE PLAYER ── -->
+<div id="yt-player" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;left:-9999px;top:0;"></div>
 
+<!-- ── FLOATING MUSIC PLAYER UI ── -->
 <div class="music-player" id="musicPlayer">
   <button class="music-btn" id="musicToggle" aria-label="Play/Pause">
     <svg id="iconPlay" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
@@ -1396,33 +1264,33 @@
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
       if (!isOpen) item.classList.add('open');
-      btn.setAttribute('aria-expanded', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
     });
   });
 
   // ── FADE-IN ON SCROLL ──
-  const observer = new IntersectionObserver((entries) => {
+  const fadeObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.style.opacity = '1';
         e.target.style.transform = 'translateY(0)';
-        observer.unobserve(e.target);
+        fadeObserver.unobserve(e.target);
       }
     });
   }, { threshold: 0.08 });
-
   document.querySelectorAll('.intro-grid, .rsvp-inner, .poi-card, .faq-item, .album-photo, .day-block').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(28px)';
     el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-    observer.observe(el);
+    fadeObserver.observe(el);
   });
 
   // ── MUSIC PLAYER ──
+  let ytPlayer;
   let playerReady = false;
-  let isPlaying = false;
+  let isPlaying   = false;
   let musicTriggered = false;
-  let dismissed = false;
+  let dismissed   = false;
 
   const musicPlayer = document.getElementById('musicPlayer');
   const musicToggle = document.getElementById('musicToggle');
@@ -1430,53 +1298,75 @@
   const iconPlay    = document.getElementById('iconPlay');
   const iconPause   = document.getElementById('iconPause');
 
-  // Load YouTube IFrame API
-  const ytTag = document.createElement('script');
-  ytTag.src = 'https://www.youtube.com/iframe_api';
-  document.head.appendChild(ytTag);
+  // Inject YouTube IFrame API
+  (function() {
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScript = document.getElementsByTagName('script')[0];
+    firstScript.parentNode.insertBefore(tag, firstScript);
+  })();
 
-  let ytPlayer;
+  // Called automatically by YouTube API when ready
   window.onYouTubeIframeAPIReady = function() {
     ytPlayer = new YT.Player('yt-player', {
+      height: '1',
+      width: '1',
+      videoId: 'DL7-CKirWZE',
+      playerVars: {
+        autoplay: 0,
+        controls: 0,
+        loop: 1,
+        playlist: 'DL7-CKirWZE',
+        playsinline: 1   // important for iOS
+      },
       events: {
-        onReady: () => { playerReady = true; },
-        onStateChange: (e) => {
-          isPlaying = e.data === YT.PlayerState.PLAYING;
+        onReady: function() {
+          playerReady = true;
+        },
+        onStateChange: function(e) {
+          isPlaying = (e.data === YT.PlayerState.PLAYING);
           iconPlay.style.display  = isPlaying ? 'none' : '';
-          iconPause.style.display = isPlaying ? '' : 'none';
+          iconPause.style.display = isPlaying ? ''     : 'none';
         }
       }
     });
   };
 
   function startMusic() {
-    if (playerReady && ytPlayer) {
+    if (playerReady && ytPlayer && typeof ytPlayer.playVideo === 'function') {
       ytPlayer.setVolume(60);
       ytPlayer.playVideo();
+    } else {
+      // Retry if not ready yet
+      setTimeout(startMusic, 300);
     }
   }
 
   // Trigger when #memories scrolls into view
   const memoriesSection = document.getElementById('memories');
-  const musicObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
+  const musicObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
       if (e.isIntersecting && !musicTriggered && !dismissed) {
         musicTriggered = true;
         musicPlayer.classList.add('visible');
-        setTimeout(startMusic, 400);
+        setTimeout(startMusic, 500);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.1 });
   if (memoriesSection) musicObserver.observe(memoriesSection);
 
   // Play / pause toggle
-  musicToggle.addEventListener('click', () => {
+  musicToggle.addEventListener('click', function() {
     if (!ytPlayer) return;
-    isPlaying ? ytPlayer.pauseVideo() : ytPlayer.playVideo();
+    if (isPlaying) {
+      ytPlayer.pauseVideo();
+    } else {
+      ytPlayer.playVideo();
+    }
   });
 
   // Dismiss
-  musicClose.addEventListener('click', () => {
+  musicClose.addEventListener('click', function() {
     dismissed = true;
     musicPlayer.classList.remove('visible');
     musicPlayer.classList.add('dismissed');
