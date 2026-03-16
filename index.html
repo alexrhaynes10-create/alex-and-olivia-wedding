@@ -154,7 +154,7 @@
       display: block;
     }
 
-    /* Names — clean blue, no shadow */
+    /* Names — blue with shadow */
     .hero-title {
       font-family: 'Oswald', sans-serif;
       font-weight: 700;
@@ -163,11 +163,20 @@
       text-transform: uppercase;
       line-height: 1.0;
       color: #034694;
+      text-shadow:
+        4px 4px 0px #022f6e,
+        8px 8px 0px rgba(0,0,0,0.4),
+        0 0 60px rgba(3,70,148,0.25);
+      -webkit-text-stroke: 1px #022f6e;
       margin-bottom: 0.6rem;
     }
-    /* Ampersand — pure white, no shadow */
+    /* Ampersand — white with shadow */
     .hero-title .ampersand {
       color: #ffffff;
+      text-shadow:
+        3px 3px 0px rgba(200,220,255,0.4),
+        6px 6px 0px rgba(0,0,0,0.35);
+      -webkit-text-stroke: 1px rgba(180,210,255,0.5);
     }
 
     .hero-title-divider {
@@ -595,7 +604,58 @@
       opacity: 0.8;
     }
 
-    /* ── MUSIC PLAYER ── */
+    /* ── MOBILE HAMBURGER ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 110;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile nav drawer */
+    .mobile-nav-drawer {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #034694;
+      z-index: 105;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .mobile-nav-drawer.open {
+      display: flex;
+      opacity: 1;
+    }
+    .mobile-nav-drawer a {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .mobile-nav-drawer a:hover { color: rgba(255,255,255,0.65); }
     .music-player {
       position: fixed;
       bottom: 2rem;
@@ -865,6 +925,7 @@
     @media (max-width: 768px) {
       nav { padding: 1.2rem 1.5rem; }
       .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
       .hero-content { padding: 0 1.5rem 4rem; }
       .hero-scroll { display: flex; right: 1.5rem; } /* ensure visible on mobile */
       .container, .container-narrow { padding: 0 1.5rem; }
@@ -899,7 +960,19 @@
     <li><a href="#memories">Memories</a></li>
     <li><a href="#faqs">FAQs</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- ── MOBILE NAV DRAWER ── -->
+<div class="mobile-nav-drawer" id="mobileDrawer">
+  <a href="#introduction" class="drawer-link">The Weekend</a>
+  <a href="#rsvp" class="drawer-link">RSVP</a>
+  <a href="#points-of-interest" class="drawer-link">Explore Ronda</a>
+  <a href="#memories" class="drawer-link">Memories</a>
+  <a href="#faqs" class="drawer-link">FAQs</a>
+</div>
 
 <!-- ── HERO ── -->
 <section class="hero">
@@ -1011,7 +1084,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           Please RSVP here
         </a>
-        <p class="rsvp-note">Opens in a new tab. Any issues? Email us at <a href="mailto:alexandoliviah@gmail.com" style="color:var(--terracotta);">alexandoliviah@gmail.com</a></p>
+        <p class="rsvp-note">Opens in a new tab. Any issues? Email us at <a href="/cdn-cgi/l/email-protection#33525f564b525d575c5f5a455a525b73545e525a5f1d505c5e" style="color:var(--terracotta);"><span class="__cf_email__" data-cfemail="b0d1dcd5c8d1ded4dfdcd9c6d9d1d8f0d7ddd1d9dc9ed3dfdd">[email&#160;protected]</span></a></p>
       </div>
     </div>
   </div>
@@ -1162,6 +1235,7 @@
                   <li><a href="https://www.palaciodeladuquesa.com" target="_blank" rel="noopener">Hotel Boutique Palacio de la Duquesa</a> — elegant old town option</li>
                   <li><a href="https://www.hotelmontelirio.com" target="_blank" rel="noopener">Hotel Montelirio</a> — stylish clifftop boutique</li>
                   <li><a href="https://www.sohohoteles.com" target="_blank" rel="noopener">Soho Boutique Palacio San Gabriel</a> — charming mid-range pick</li>
+                  <li><a href="https://www.guestreservations.com/catalonia-ronda/booking" target="_blank" rel="noopener">Hotel Catalonia Ronda</a> — well-located mid-range hotel in the centre</li>
                   <li><a href="https://www.booking.com/city/es/ronda.html" target="_blank" rel="noopener">Apartments via Booking.com</a> — great private options in the Old Town</li>
                   <li><a href="https://www.airbnb.com/s/Ronda--Spain" target="_blank" rel="noopener">Airbnb Ronda</a> — good for groups or longer stays</li>
                 </ul>
@@ -1222,7 +1296,7 @@
   <div class="footer-brand">Alex <span class="amp">&amp;</span> Olivia</div>
   <div class="footer-info">
     <p>3rd October 2026 · La Organica, Ronda, Spain</p>
-    <p>Questions? <a href="mailto:alexandoliviah@gmail.com" class="footer-contact">alexandoliviah@gmail.com</a></p>
+    <p>Questions? <a href="/cdn-cgi/l/email-protection#a9c8c5ccd1c8c7cdc6c5c0dfc0c8c1e9cec4c8c0c587cac6c4" class="footer-contact"><span class="__cf_email__" data-cfemail="86e7eae3fee7e8e2e9eaeff0efe7eec6e1ebe7efeaa8e5e9eb">[email&#160;protected]</span></a></p>
   </div>
 </footer>
 
@@ -1242,7 +1316,7 @@
   <button class="music-close" id="musicClose" aria-label="Close player">&#x2715;</button>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── NAV SCROLL ──
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
@@ -1285,28 +1359,50 @@
     fadeObserver.observe(el);
   });
 
+  // ── HAMBURGER MENU ──
+  const hamburger = document.getElementById('hamburger');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileDrawer.classList.contains('open');
+    mobileDrawer.classList.toggle('open', !isOpen);
+    hamburger.classList.toggle('open', !isOpen);
+    document.body.style.overflow = isOpen ? '' : 'hidden';
+  });
+
+  document.querySelectorAll('.drawer-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileDrawer.classList.remove('open');
+      hamburger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
   // ── MUSIC PLAYER ──
-  let ytPlayer;
-  let playerReady = false;
-  let isPlaying   = false;
-  let musicTriggered = false;
-  let dismissed   = false;
+  var ytPlayer;
+  var playerReady    = false;
+  var isPlaying      = false;
+  var musicTriggered = false;
+  var dismissed      = false;
 
-  const musicPlayer = document.getElementById('musicPlayer');
-  const musicToggle = document.getElementById('musicToggle');
-  const musicClose  = document.getElementById('musicClose');
-  const iconPlay    = document.getElementById('iconPlay');
-  const iconPause   = document.getElementById('iconPause');
+  // iOS blocks autoplay — requires a real user tap
+  var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-  // Inject YouTube IFrame API
+  var musicPlayer  = document.getElementById('musicPlayer');
+  var musicToggle  = document.getElementById('musicToggle');
+  var musicClose   = document.getElementById('musicClose');
+  var iconPlay     = document.getElementById('iconPlay');
+  var iconPause    = document.getElementById('iconPause');
+  var musicLabel   = musicPlayer.querySelector('.music-label');
+
+  // Load YouTube IFrame API
   (function() {
-    const tag = document.createElement('script');
+    var tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
-    const firstScript = document.getElementsByTagName('script')[0];
-    firstScript.parentNode.insertBefore(tag, firstScript);
+    var first = document.getElementsByTagName('script')[0];
+    first.parentNode.insertBefore(tag, first);
   })();
 
-  // Called automatically by YouTube API when ready
   window.onYouTubeIframeAPIReady = function() {
     ytPlayer = new YT.Player('yt-player', {
       height: '1',
@@ -1317,55 +1413,58 @@
         controls: 0,
         loop: 1,
         playlist: 'DL7-CKirWZE',
-        playsinline: 1   // important for iOS
+        playsinline: 1
       },
       events: {
-        onReady: function() {
-          playerReady = true;
-        },
+        onReady: function() { playerReady = true; },
         onStateChange: function(e) {
           isPlaying = (e.data === YT.PlayerState.PLAYING);
           iconPlay.style.display  = isPlaying ? 'none' : '';
           iconPause.style.display = isPlaying ? ''     : 'none';
+          if (isPlaying && musicLabel) musicLabel.textContent = 'Now playing';
         }
       }
     });
   };
 
-  function startMusic() {
-    if (playerReady && ytPlayer && typeof ytPlayer.playVideo === 'function') {
-      ytPlayer.setVolume(60);
-      ytPlayer.playVideo();
-    } else {
-      // Retry if not ready yet
-      setTimeout(startMusic, 300);
+  function tryPlay() {
+    if (!playerReady || !ytPlayer || typeof ytPlayer.playVideo !== 'function') {
+      setTimeout(tryPlay, 400);
+      return;
     }
+    ytPlayer.setVolume(60);
+    ytPlayer.playVideo();
   }
 
-  // Trigger when #memories scrolls into view
-  const memoriesSection = document.getElementById('memories');
-  const musicObserver = new IntersectionObserver(function(entries) {
+  var memoriesSection = document.getElementById('memories');
+  var musicObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
       if (e.isIntersecting && !musicTriggered && !dismissed) {
         musicTriggered = true;
         musicPlayer.classList.add('visible');
-        setTimeout(startMusic, 500);
+        if (isIOS) {
+          // Can't autoplay on iOS — prompt user to tap
+          if (musicLabel) musicLabel.textContent = 'Tap ▶ to play';
+        } else {
+          setTimeout(tryPlay, 500);
+        }
       }
     });
   }, { threshold: 0.1 });
   if (memoriesSection) musicObserver.observe(memoriesSection);
 
-  // Play / pause toggle
+  // Play / pause (also acts as the user-gesture trigger on iOS)
   musicToggle.addEventListener('click', function() {
     if (!ytPlayer) return;
     if (isPlaying) {
       ytPlayer.pauseVideo();
     } else {
+      if (musicLabel) musicLabel.textContent = 'Now playing';
+      ytPlayer.setVolume(60);
       ytPlayer.playVideo();
     }
   });
 
-  // Dismiss
   musicClose.addEventListener('click', function() {
     dismissed = true;
     musicPlayer.classList.remove('visible');
