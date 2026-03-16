@@ -937,128 +937,14 @@
       .day-block.day-saturday { border-bottom-color: rgba(255,255,255,0.15); }
       .day-block:last-child { border-bottom: none; }
       .poi-grid { grid-template-columns: 1fr; }
-      /* album grid handled by swipe carousel media query */
+      .album-container { padding: 0 1rem; }
+      .album-grid { grid-template-columns: 1fr; }
+      .album-photo.span2, .album-photo.span3 { grid-column: span 1; aspect-ratio: 4/3; }
       footer { flex-direction: column; text-align: center; }
       .footer-info { text-align: center; }
       .rsvp-link-block { padding: 2rem 1.5rem; }
       .music-player { bottom: 1rem; right: 1rem; left: 1rem; right: 1rem; border-radius: 40px; }
       .music-title { max-width: 120px; }
-      /* Remove heavy shadow on mobile titles */
-      .hero-title {
-        text-shadow: 2px 2px 0px rgba(0,0,0,0.25);
-        -webkit-text-stroke: 0px;
-      }
-      .hero-title .ampersand {
-        text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
-        -webkit-text-stroke: 0px;
-      }
-      .hero-title {
-        text-shadow: none;
-        -webkit-text-stroke: 0;
-      }
-      .hero-title .ampersand {
-        text-shadow: none;
-        -webkit-text-stroke: 0;
-      }
-    }
-
-    /* ── MOBILE SWIPE CAROUSEL ── */
-    @media (max-width: 768px) {
-      .album-container { padding: 0; overflow: hidden; }
-      .album-grid {
-        display: flex;
-        flex-direction: row;
-        overflow-x: auto;
-        gap: 8px;
-        padding: 0 1rem 1rem;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-      .album-grid::-webkit-scrollbar { display: none; }
-      .album-photo,
-      .album-photo.tall,
-      .album-photo.wide,
-      .album-photo.square,
-      .album-photo.span2,
-      .album-photo.span3 {
-        flex: 0 0 78vw;
-        width: 78vw;
-        aspect-ratio: 3/4;
-        grid-column: unset;
-        scroll-snap-align: start;
-      }
-      .album-photo.span2,
-      .album-photo.span3 { flex: 0 0 88vw; width: 88vw; aspect-ratio: 4/3; }
-      /* Always show captions on mobile (no hover) */
-      .album-photo .photo-caption { opacity: 1; }
-      /* Swipe hint indicator */
-      .swipe-hint {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        padding: 0 1rem 2rem;
-        color: var(--muted);
-        font-size: 0.7rem;
-        font-weight: 500;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-      }
-    }
-    @media (min-width: 769px) {
-      .swipe-hint { display: none; }
-    }
-
-    /* ── MOBILE SWIPE CAROUSEL ── */
-    @media (max-width: 768px) {
-      #memories { padding: 4rem 0; }
-      .album-container { padding: 0; }
-      .album-grid {
-        display: flex;
-        flex-direction: row;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        gap: 8px;
-        padding: 0 1.5rem 1.5rem;
-        /* Hide scrollbar */
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-      }
-      .album-grid::-webkit-scrollbar { display: none; }
-      /* Every photo becomes a fixed-width slide */
-      .album-photo,
-      .album-photo.tall,
-      .album-photo.wide,
-      .album-photo.square,
-      .album-photo.span2,
-      .album-photo.span3 {
-        flex: 0 0 78vw;
-        max-width: 340px;
-        aspect-ratio: 3/4;
-        grid-column: unset;
-        scroll-snap-align: start;
-      }
-      /* Captions always visible on mobile */
-      .album-photo .photo-caption { opacity: 1; }
-      /* Swipe hint indicator */
-      .album-swipe-hint {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-top: 1.2rem;
-        font-family: 'Oswald', sans-serif;
-        font-size: 0.6rem;
-        font-weight: 700;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--terracotta);
-        opacity: 0.7;
-      }
-      .album-swipe-hint svg { flex-shrink: 0; }
     }
   </style>
 </head>
@@ -1096,7 +982,6 @@
   <div class="hero-content">
     <p class="hero-eyebrow">Together with their families</p>
     <div class="hero-title-wrap">
-      <span class="hero-nav-title">A &amp; O &nbsp;—&nbsp; 2026</span>
       <div class="hero-title">Alex</div>
       <div class="hero-title"><span class="ampersand">&amp;</span> Olivia</div>
       <div class="hero-title-divider">
@@ -1123,7 +1008,7 @@
       <div class="intro-text">
         <h2>The Weekend Agenda</h2>
         <p>Welcome to our closest and most beautiful friends and family.</p>
-        <p>We would love you to celebrate our marriage with us in southern Spain in early autumn. Think warm evenings, long tables filled with local food and wine, and a night of dancing — we can't wait to share it!</p>
+        <p>We would love you to celebrate our marriage with us in southern Spain in early autumn. Think warm evenings, long tables filled with local food and wine, and a night of dancing — we can't wait for you to join us!</p>
         <p>The Hurrells have a close connection with Southern Spain, and honestly… who really needs an excuse for a Spanish wedding? We will provide updates and further details on this page as we get closer to the date.</p>
 
         <div class="weekend-schedule">
@@ -1166,7 +1051,7 @@
               <li class="day-event">
                 <span class="event-time">TBC</span>
                 <span class="event-name">Sunday Plans</span>
-                <span class="event-detail">More details to follow — we want to round off the weekend properly and have a chance to say goodbye.</span>
+                <span class="event-detail">More details to follow. We want to round off the weekend properly and have a chance to say goodbye.</span>
               </li>
             </ul>
           </div>
@@ -1189,8 +1074,8 @@
         <p class="section-label">RSVP</p>
         <h2>Let us know you're coming</h2>
         <p>We'd love to know you'll be joining us in Ronda. Please fill in the form <strong>at your earliest convenience</strong> so we can plan ahead.</p>
-        <p>If you have any questions or need help with travel, please don't hesitate to reach out directly.</p>
-        <div class="rsvp-deadline">Kindly respond as soon as possible, and no later than 1 July.</div>
+        <p>If you have any questions or need help with travel, please contact us directly.</p>
+        <div class="rsvp-deadline">Respond as soon as possible, and no later than 1 July.</div>
       </div>
       <div class="rsvp-link-block">
         <p>Click the link below to open our RSVP form. It takes just a minute to complete — works perfectly on mobile too.</p>
@@ -1198,7 +1083,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           Please RSVP here
         </a>
-        <p class="rsvp-note">Opens in a new tab. Any issues? Email us at <a href="mailto:alexandoliviah@gmail.com" style="color:var(--terracotta);">alexandoliviah@gmail.com</a></p>
+        <p class="rsvp-note">Opens in a new tab. Any issues? Email us at <a href="/cdn-cgi/l/email-protection#33525f564b525d575c5f5a455a525b73545e525a5f1d505c5e" style="color:var(--terracotta);"><span class="__cf_email__" data-cfemail="b0d1dcd5c8d1ded4dfdcd9c6d9d1d8f0d7ddd1d9dc9ed3dfdd">[email&#160;protected]</span></a></p>
       </div>
     </div>
   </div>
@@ -1261,12 +1146,12 @@
         </div>
       </div>
       <div class="poi-card">
-        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&auto=format&fit=crop&q=80" alt="Local Wineries" />
+        <img src="images/WhatsApp Image 2026-03-16 at 18.16.20.jpeg" alt="Local Wineries" />
         <div class="poi-overlay">
           <p class="poi-type">Wine &amp; Food</p>
-          <p class="poi-name">Ronda Wine Route</p>
-          <p class="poi-desc">The Serranía de Ronda is an emerging wine region with high-altitude vineyards producing exceptional reds. Being served on the day!</p>
-          <p class="poi-dist">· Within 20 mins</p>
+          <p class="poi-name">Vermouth Bars</p>
+          <p class="poi-desc"></p>
+          <p class="poi-dist">· In town.</p>
         </div>
       </div>
       <div class="poi-card">
@@ -1274,7 +1159,7 @@
         <div class="poi-overlay">
           <p class="poi-type">Stay</p>
           <p class="poi-name">Parador de Ronda</p>
-          <p class="poi-desc">Spectacularly positioned on the edge of the gorge, with views straight down the cliff face.</p>
+          <p class="poi-desc"></p>
           <p class="poi-dist">· In town</p>
         </div>
       </div>
@@ -1293,10 +1178,10 @@
   </div>
   <div class="album-container">
     <div class="album-grid">
-      <div class="album-photo tall"><img src="images/alex-olivia-henley-regatta.jpg" alt="Henley Regatta" /><div class="photo-caption"><span class="photo-caption-year">2019</span><span class="photo-caption-text">Henley Regatta</span></div></div>
-      <div class="album-photo tall"><img src="images/couple_sailboat_sunset_greece.jpg" alt="Greece" /><div class="photo-caption"><span class="photo-caption-year">2019</span><span class="photo-caption-text">Pretending to know how to sail.</span></div></div>
-      <div class="album-photo tall"><img src="images/couple_sailboat_snorkeling_greece.jpg" alt="Greece" /><div class="photo-caption"><span class="photo-caption-year">2019</span><span class="photo-caption-text">Greece</span></div></div>
-      <div class="album-photo span2"><img src="images/photo_007.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2020</span><span class="photo-caption-text"></span></div></div>
+      <div class="album-photo tall"><img src="images/alex-olivia-henley-regatta.jpg" alt="Henley Regatta" /><div class="photo-caption"><span class="photo-caption-year">2018</span><span class="photo-caption-text">Henley Regatta</span></div></div>
+      <div class="album-photo tall"><img src="images/couple_sailboat_sunset_greece.jpg" alt="Greece" /><div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text">Pretending to know how to sail.</span></div></div>
+      <div class="album-photo tall"><img src="images/couple_sailboat_snorkeling_greece.jpg" alt="Greece" /><div class="photo-caption"><span class="photo-caption-year">2023</span><span class="photo-caption-text">Greece</span></div></div>
+      <div class="album-photo span2"><img src="images/photo_007.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2023</span><span class="photo-caption-text"></span></div></div>
       <div class="album-photo square"><img src="images/couple_running_gear_selfie.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2020</span><span class="photo-caption-text"></span></div></div>
       <div class="album-photo tall"><img src="images/photo_010.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2020</span><span class="photo-caption-text"></span></div></div>
       <div class="album-photo tall"><img src="images/photo_012.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2021</span><span class="photo-caption-text"></span></div></div>
@@ -1304,20 +1189,19 @@
       <div class="album-photo span3"><img src="images/image_6.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2022</span><span class="photo-caption-text">Tignes</span></div></div>
       <div class="album-photo square"><img src="images/photo_014.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2022</span><span class="photo-caption-text">Home</span></div></div>
       <div class="album-photo span2"><img src="images/alex-olivia-pool-france.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2023</span><span class="photo-caption-text">France</span></div></div>
-      <div class="album-photo tall"><img src="images/alex-olivia-summer-garden.jpg" alt="Summer garden" /><div class="photo-caption"><span class="photo-caption-year">2024</span><span class="photo-caption-text">Cake</span></div></div>
+      <div class="album-photo tall"><img src="images/alex-olivia-summer-garden.jpg" alt="Summer garden" /><div class="photo-caption"><span class="photo-caption-year">2021</span><span class="photo-caption-text"></span></div></div>
       <div class="album-photo tall"><img src="images/alex-olivia-open-water-swim.jpg" alt="Open water swim" /><div class="photo-caption"><span class="photo-caption-year">2024</span><span class="photo-caption-text"></span></div></div>
       <div class="album-photo tall"><img src="images/photo_013.jpg" alt="Indonesia" /><div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text">Somewhere in Indonesia.</span></div></div>
-      <div class="album-photo span2"><img src="images/woman_guinness_pub_dublin.jpg" alt="Belfast" /><div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text">Belfast</span></div></div>
-      <div class="album-photo square"><img src="images/image_7.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text"></span></div></div>
-      <div class="album-photo tall"><img src="images/image_8.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text"></span></div></div>
-      <div class="album-photo tall"><img src="images/image_1.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2025</span><span class="photo-caption-text"></span></div></div>
-      <div class="album-photo tall"><img src="images/image_2.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year">2026</span><span class="photo-caption-text"></span></div></div>
+      <div class="album-photo span2"><img src="images/woman_guinness_pub_dublin.jpg" alt="Belfast" /><div class="photo-caption"><span class="photo-caption-year">2022</span><span class="photo-caption-text">Belfast</span></div></div>
+      <div class="album-photo square"><img src="images/image_7.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year"></span><span class="photo-caption-text"></span></div></div>
+      <div class="album-photo tall"><img src="images/image_8.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year"></span><span class="photo-caption-text"></span></div></div>
+      <div class="album-photo tall"><img src="images/image_1.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year"></span><span class="photo-caption-text"></span></div></div>
+      <div class="album-photo tall"><img src="images/image_2.jpg" alt="Memory" /><div class="photo-caption"><span class="photo-caption-year"></span><span class="photo-caption-text"></span></div></div>
       <div class="album-photo span2"><img src="images/couple_wading_tropical_beach.jpg" alt="Mexico" /><div class="photo-caption"><span class="photo-caption-year">2022</span><span class="photo-caption-text">Mexico</span></div></div>
-      <div class="album-photo square"><img src="images/woman_yellow_dress_garden_party_cake.jpg" alt="Garden party" /><div class="photo-caption"><span class="photo-caption-year">2024</span><span class="photo-caption-text"></span></div></div>
+      <div class="album-photo square"><img src="images/woman_yellow_dress_garden_party_cake.jpg" alt="Garden party" /><div class="photo-caption"><span class="photo-caption-year"></span><span class="photo-caption-text"></span></div></div>
       <div class="album-photo span3"><img src="images/image_5.jpg" alt="Pembrokeshire" /><div class="photo-caption"><span class="photo-caption-year">2021</span><span class="photo-caption-text">Practice in Pembrokeshire!</span></div></div>
     </div>
     <p class="album-tagline"></p>
-  <p class="swipe-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg> Swipe to browse</p>
   </div>
 </section>
 
@@ -1335,7 +1219,7 @@
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">How do I get to Ronda?<span class="faq-icon">+</span></button>
             <div class="faq-a" role="region">
-              <div class="faq-a-inner">The nearest airports are Málaga (1 hour drive) and Seville (1.5 hours). Both have excellent connections from the UK and Europe. There's also a scenic train from Málaga or Seville if you'd prefer to arrive by rail. We'll be sharing more detailed travel notes closer to the date.</div>
+              <div class="faq-a-inner">The nearest airports are Málaga (1 hour drive) and Seville (1.5 hours). Both have connections from the UK and Europe. There's a bus and scenic train from Málaga or if you'd prefer to arrive by rail. If you're hiring a car, be aware that parking in Ronda is very limited, check if your accommodation offers it. We're happy to help coordinate group taxis or a bus, grouping guests by flight arrivals to make things as easy as possible.</div>
             </div>
           </div>
 
@@ -1345,14 +1229,14 @@
               <div class="faq-a-inner">
                 Ronda has wonderful places to stay at every price point. Book early — October fills up fast. Here are some options we'd recommend:
                 <ul class="hotel-list">
-                  <li><a href="https://www.parador.es/en/paradores/parador-de-ronda" target="_blank" rel="noopener">Parador de Ronda</a> — iconic gorge-edge views, special occasion stay</li>
-                  <li><a href="https://www.casapalaciovillazambra.com" target="_blank" rel="noopener">Casa Palacio VillaZambra</a> — beautiful boutique palace</li>
-                  <li><a href="https://www.palaciodeladuquesa.com" target="_blank" rel="noopener">Hotel Boutique Palacio de la Duquesa</a> — elegant old town option</li>
-                  <li><a href="https://www.hotelmontelirio.com" target="_blank" rel="noopener">Hotel Montelirio</a> — stylish clifftop boutique</li>
-                  <li><a href="https://www.sohohoteles.com" target="_blank" rel="noopener">Soho Boutique Palacio San Gabriel</a> — charming mid-range pick</li>
+                  <li><a href="https://www.parador.es/en/paradores/parador-de-ronda" target="_blank" rel="noopener">Parador de Ronda</a></li>
+                  <li><a href="https://www.casapalaciovillazambra.com" target="_blank" rel="noopener">Casa Palacio VillaZambra</a></li>
+                  <li><a href="https://www.palaciodeladuquesa.com" target="_blank" rel="noopener">Hotel Boutique Palacio de la Duquesa</a> — old town option</li>
+                  <li><a href="https://www.hotelmontelirio.com" target="_blank" rel="noopener">Hotel Montelirio</a></li>
+                  <li><a href="https://www.sohohoteles.com" target="_blank" rel="noopener">Soho Boutique Palacio San Gabriel</a></li>
                   <li><a href="https://www.guestreservations.com/catalonia-ronda/booking" target="_blank" rel="noopener">Hotel Catalonia Ronda</a> — well-located mid-range hotel in the centre</li>
-                  <li><a href="https://www.booking.com/city/es/ronda.html" target="_blank" rel="noopener">Apartments via Booking.com</a> — great private options in the Old Town</li>
-                  <li><a href="https://www.airbnb.com/s/Ronda--Spain" target="_blank" rel="noopener">Airbnb Ronda</a> — good for groups or longer stays</li>
+                  <li><a href="https://www.booking.com/city/es/ronda.html" target="_blank" rel="noopener">Apartments via Booking.com</a></li>
+                  <li><a href="https://www.airbnb.com/s/Ronda--Spain" target="_blank" rel="noopener">Airbnb Ronda</a></li>
                 </ul>
               </div>
             </div>
@@ -1361,42 +1245,42 @@
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">What is the dress code?<span class="faq-icon">+</span></button>
             <div class="faq-a" role="region">
-              <div class="faq-a-inner">Summer formal — let's celebrate colour. The brighter the better!</div>
+              <div class="faq-a-inner">Summer formal, with jackets for the men — let's celebrate colour. Most of the event will be on grass so choose your footware wisely.</div>
             </div>
           </div>
 
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">Is there transport to and from the venue?<span class="faq-icon">+</span></button>
             <div class="faq-a" role="region">
-              <div class="faq-a-inner">Yes — we plan to arrange a shuttle service to/from the venue (10 mins drive) departing from outside the Parador hotel. Shuttles will run from 3–3.30pm to ensure all guests are seated by 3.45pm, then on demand back to Ronda throughout the evening. If you're staying outside Ronda, please use a local taxi.</div>
+              <div class="faq-a-inner">Yes — we plan to arrange a shuttle service to/from the venue (10 mins drive) departing from the town center. Shuttles will run from 2.30 - 3pm to ensure all guests are seated by 3.45pm, then on demand back to Ronda throughout the evening. If you're staying outside Ronda, we recommend a local taxi.</div>
             </div>
           </div>
 
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">What's the weather like in October?<span class="faq-icon">+</span></button>
             <div class="faq-a" role="region">
-              <div class="faq-a-inner">Early October in Ronda is warm during the day (22–26°C), clear skies, and cool evenings. Sunscreen during the afternoon ceremony is a good idea.</div>
+              <div class="faq-a-inner">Early October in Ronda is warm during the day (20–26°C), clear skies, and cool evenings. With this we recommend bringing a light layer for after sunset.</div>
             </div>
           </div>
 
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">Are children welcome?<span class="faq-icon">+</span></button>
             <div class="faq-a" role="region">
-              <div class="faq-a-inner">We love your children dearly, but we've chosen to make our day an adults-only celebration (18+). This is due to both the capacity and suitability of the venue. Please let us know if you'd like information about babysitters in the area — we're happy to help.</div>
+              <div class="faq-a-inner">We love your children dearly, but we've chosen to make our day an adults-only celebration. This is due to both the capacity and suitability of the venue. Please let us know if you'd like information about babysitters in the area — we're happy to help.</div>
             </div>
           </div>
 
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">What about gifts?<span class="faq-icon">+</span></button>
             <div class="faq-a" role="region">
-              <div class="faq-a-inner">Honestly, making the trip to Spain with us is the most generous gift we could ask for. If you'd like to contribute something, we have a small honeymoon fund — details will be shared with your paper invitation. No obligation whatsoever.</div>
+              <div class="faq-a-inner">Making the trip to Spain with us is the most generous gift we could ask for. If you'd like to contribute something, we have a small honeymoon fund — details will be shared later.</div>
             </div>
           </div>
 
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">Can I take photos during the ceremony?<span class="faq-icon">+</span></button>
             <div class="faq-a" role="region">
-              <div class="faq-a-inner">We'd love this to be a phone-free wedding as much as possible. We're happy for guests to take their own photos, but please ensure phones are put away when not in use. We have two photographers on the day — so you can enjoy it in real life rather than through a screen!</div>
+              <div class="faq-a-inner">We'd love this to be a phone-free wedding as much as possible. We're happy for guests to take their own photos, but please ensure phones are put away. We have two photographers on the day — so you can enjoy it in real life rather than through a screen!</div>
             </div>
           </div>
 
@@ -1411,7 +1295,7 @@
   <div class="footer-brand">Alex <span class="amp">&amp;</span> Olivia</div>
   <div class="footer-info">
     <p>3rd October 2026 · La Organica, Ronda, Spain</p>
-    <p>Questions? <a href="mailto:alexandoliviah@gmail.com" class="footer-contact">alexandoliviah@gmail.com</a></p>
+    <p>Questions? <a href="/cdn-cgi/l/email-protection#a9c8c5ccd1c8c7cdc6c5c0dfc0c8c1e9cec4c8c0c587cac6c4" class="footer-contact"><span class="__cf_email__" data-cfemail="86e7eae3fee7e8e2e9eaeff0efe7eec6e1ebe7efeaa8e5e9eb">[email&#160;protected]</span></a></p>
   </div>
 </footer>
 
@@ -1431,7 +1315,7 @@
   <button class="music-close" id="musicClose" aria-label="Close player">&#x2715;</button>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── NAV SCROLL ──
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
