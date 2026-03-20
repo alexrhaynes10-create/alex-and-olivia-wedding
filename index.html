@@ -1413,28 +1413,28 @@
   var isPlaying      = false;
   var musicTriggered = false;
   var dismissed      = false;
+  var pendingPlay    = false; // section scrolled into view before player was ready
 
   var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-  var musicPlayer = document.getElementById('musicPlayer');
-  var musicToggle = document.getElementById('musicToggle');
-  var musicClose  = document.getElementById('musicClose');
-  var iconPlay    = document.getElementById('iconPlay');
-  var iconPause   = document.getElementById('iconPause');
-  var musicLabel  = musicPlayer.querySelector('.music-label');
+  var musicPlayerEl = document.getElementById('musicPlayer');
+  var musicToggle   = document.getElementById('musicToggle');
+  var musicClose    = document.getElementById('musicClose');
+  var iconPlay      = document.getElementById('iconPlay');
+  var iconPause     = document.getElementById('iconPause');
+  var musicLabel    = musicPlayerEl.querySelector('.music-label');
 
-  // Inject YouTube IFrame API
+  // ── 1. Load the YT IFrame API as early as possible ──
   (function() {
     var tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
-    var first = document.getElementsByTagName('script')[0];
-    first.parentNode.insertBefore(tag, first);
+    document.head.appendChild(tag);
   })();
 
+  // ── 2. Create player as soon as API is ready ──
   window.onYouTubeIframeAPIReady = function() {
     ytPlayer = new YT.Player('yt-player', {
-      height: '1',
-      width: '1',
+      height: '1', width: '1',
       videoId: 'DL7-CKirWZE',
       playerVars: {
         autoplay: 0,
@@ -1442,17 +1442,18 @@
         loop: 1,
         playlist: 'DL7-CKirWZE',
         playsinline: 1,
-        // Start muted — required by all modern browsers for autoplay to work.
-        // We unmute immediately after playback begins.
-        mute: 1
+        mute: 1           // must start muted so browsers allow programmatic play
       },
       events: {
         onReady: function() {
           playerReady = true;
-          // If the section is already in view when the API loads, start immediately.
-          if (musicTriggered && !dismissed) {
-            startMutedThenUnmute();
-          }
+          // Pre-buffer silently: start + immediately pause so the song is ready to go.
+          ytPlayer.mute();
+          ytPlayer.playVideo();
+          setTimeout(function() {
+            if (!pendingPlay) ytPlayer.pauseVideo();
+            else             doPlay(); // section was already scrolled into view
+          }, 800);
         },
         onStateChange: function(e) {
           isPlaying = (e.data === YT.PlayerState.PLAYING);
@@ -1463,79 +1464,62 @@
     });
   };
 
-  // Play muted (bypasses autoplay block), then unmute after a short delay.
-  // On iOS we skip the auto-unmute and show a nudge instead, since iOS
-  // requires a direct user gesture to produce sound via IFrame API.
-  function startMutedThenUnmute() {
-    if (!playerReady || !ytPlayer || typeof ytPlayer.playVideo !== 'function') {
-      setTimeout(startMutedThenUnmute, 300);
-      return;
-    }
+  // ── 3. Actually play + unmute ──
+  function doPlay() {
+    if (!playerReady || !ytPlayer || typeof ytPlayer.playVideo !== 'function') return;
 
     ytPlayer.mute();
-    ytPlayer.setVolume(0);
     ytPlayer.playVideo();
 
     if (isIOS) {
-      // iOS blocks unmuting without a tap — show prompt and let toggle button handle it.
+      // iOS requires a real tap to unmute — nudge the user via the label
       if (musicLabel) musicLabel.textContent = 'Tap ▶ for sound';
     } else {
-      // Ramp volume up smoothly so it doesn't blare in.
-      var targetVol = 60;
-      var step = 0;
-      var steps = 20;
-      var interval = setInterval(function() {
-        step++;
-        var vol = Math.round((targetVol / steps) * step);
-        if (ytPlayer && typeof ytPlayer.setVolume === 'function') {
-          ytPlayer.setVolume(vol);
-          if (step === 1) ytPlayer.unMute();
-        }
-        if (step >= steps) {
-          clearInterval(interval);
-          if (musicLabel) musicLabel.textContent = 'Now playing';
-        }
-      }, 60);
+      // Unmute immediately (scroll = user gesture, browsers allow this)
+      ytPlayer.unMute();
+      ytPlayer.setVolume(55);
+      if (musicLabel) musicLabel.textContent = 'Now playing';
     }
   }
 
-  // Observe the #memories section — trigger player when it enters the viewport.
+  // ── 4. Watch for the memories section ──
   var memoriesSection = document.getElementById('memories');
   var musicObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
       if (e.isIntersecting && !musicTriggered && !dismissed) {
         musicTriggered = true;
-        musicPlayer.classList.add('visible');
+        musicPlayerEl.classList.add('visible');
 
         if (playerReady) {
-          startMutedThenUnmute();
+          doPlay();
+        } else {
+          // Player not ready yet — set flag so onReady fires doPlay()
+          pendingPlay = true;
         }
-        // If the API isn't ready yet, onReady will call startMutedThenUnmute().
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.15 });
 
   if (memoriesSection) musicObserver.observe(memoriesSection);
 
-  // Toggle play / pause
+  // ── 5. Toggle button ──
   musicToggle.addEventListener('click', function() {
     if (!ytPlayer) return;
     if (isPlaying) {
       ytPlayer.pauseVideo();
     } else {
-      // If the user hit pause and taps play again, restore full volume immediately.
       ytPlayer.unMute();
-      ytPlayer.setVolume(60);
+      ytPlayer.setVolume(55);
       ytPlayer.playVideo();
       if (musicLabel) musicLabel.textContent = 'Now playing';
     }
   });
 
-  // Dismiss player
+  // ── 6. Dismiss ──
   musicClose.addEventListener('click', function() {
     dismissed = true;
-    musicPlayer.classList.remove('visible');
-    musicPlayer.classList.add('dismissed');
+    musicPlayerEl.classList.remove('visible');
+    musicPlayerEl.classList.add('dismissed');
     if (ytPlayer && isPlaying) ytPlayer.pauseVideo();
   });
 </script>
