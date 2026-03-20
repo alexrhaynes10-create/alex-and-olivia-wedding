@@ -927,7 +927,6 @@
       .hero-content { padding: 0 1.5rem 4rem; }
       .hero-scroll { display: flex; right: 1.5rem; }
 
-      /* Remove extra shading on hero title text */
       .hero-title {
         text-shadow: none;
         -webkit-text-stroke: 0;
@@ -952,7 +951,6 @@
       footer { flex-direction: column; text-align: center; }
       .footer-info { text-align: center; }
 
-      /* Highlights reel — horizontal swipe carousel on mobile */
       .album-container { padding: 0; }
       .album-grid {
         display: flex;
@@ -962,7 +960,6 @@
         -webkit-overflow-scrolling: touch;
         gap: 8px;
         padding: 0 1.5rem;
-        /* Hide scrollbar but keep scroll */
         scrollbar-width: none;
         -ms-overflow-style: none;
       }
@@ -979,7 +976,6 @@
         aspect-ratio: 4/3;
         scroll-snap-align: start;
       }
-      /* Always show captions on mobile (no hover) */
       .album-photo .photo-caption { opacity: 1; }
     }
   </style>
@@ -1411,7 +1407,7 @@
     });
   });
 
-  // MUSIC PLAYER
+  // ─── MUSIC PLAYER ────────────────────────────────────────────────────────────
   var ytPlayer;
   var playerReady    = false;
   var isPlaying      = false;
@@ -1420,13 +1416,14 @@
 
   var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-  var musicPlayer  = document.getElementById('musicPlayer');
-  var musicToggle  = document.getElementById('musicToggle');
-  var musicClose   = document.getElementById('musicClose');
-  var iconPlay     = document.getElementById('iconPlay');
-  var iconPause    = document.getElementById('iconPause');
-  var musicLabel   = musicPlayer.querySelector('.music-label');
+  var musicPlayer = document.getElementById('musicPlayer');
+  var musicToggle = document.getElementById('musicToggle');
+  var musicClose  = document.getElementById('musicClose');
+  var iconPlay    = document.getElementById('iconPlay');
+  var iconPause   = document.getElementById('iconPause');
+  var musicLabel  = musicPlayer.querySelector('.music-label');
 
+  // Inject YouTube IFrame API
   (function() {
     var tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
@@ -1439,55 +1436,102 @@
       height: '1',
       width: '1',
       videoId: 'DL7-CKirWZE',
-      playerVars: { autoplay: 0, controls: 0, loop: 1, playlist: 'DL7-CKirWZE', playsinline: 1 },
+      playerVars: {
+        autoplay: 0,
+        controls: 0,
+        loop: 1,
+        playlist: 'DL7-CKirWZE',
+        playsinline: 1,
+        // Start muted — required by all modern browsers for autoplay to work.
+        // We unmute immediately after playback begins.
+        mute: 1
+      },
       events: {
-        onReady: function() { playerReady = true; },
+        onReady: function() {
+          playerReady = true;
+          // If the section is already in view when the API loads, start immediately.
+          if (musicTriggered && !dismissed) {
+            startMutedThenUnmute();
+          }
+        },
         onStateChange: function(e) {
           isPlaying = (e.data === YT.PlayerState.PLAYING);
           iconPlay.style.display  = isPlaying ? 'none' : '';
           iconPause.style.display = isPlaying ? ''     : 'none';
-          if (isPlaying && musicLabel) musicLabel.textContent = 'Now playing';
         }
       }
     });
   };
 
-  function tryPlay() {
+  // Play muted (bypasses autoplay block), then unmute after a short delay.
+  // On iOS we skip the auto-unmute and show a nudge instead, since iOS
+  // requires a direct user gesture to produce sound via IFrame API.
+  function startMutedThenUnmute() {
     if (!playerReady || !ytPlayer || typeof ytPlayer.playVideo !== 'function') {
-      setTimeout(tryPlay, 400);
+      setTimeout(startMutedThenUnmute, 300);
       return;
     }
-    ytPlayer.setVolume(60);
+
+    ytPlayer.mute();
+    ytPlayer.setVolume(0);
     ytPlayer.playVideo();
+
+    if (isIOS) {
+      // iOS blocks unmuting without a tap — show prompt and let toggle button handle it.
+      if (musicLabel) musicLabel.textContent = 'Tap ▶ for sound';
+    } else {
+      // Ramp volume up smoothly so it doesn't blare in.
+      var targetVol = 60;
+      var step = 0;
+      var steps = 20;
+      var interval = setInterval(function() {
+        step++;
+        var vol = Math.round((targetVol / steps) * step);
+        if (ytPlayer && typeof ytPlayer.setVolume === 'function') {
+          ytPlayer.setVolume(vol);
+          if (step === 1) ytPlayer.unMute();
+        }
+        if (step >= steps) {
+          clearInterval(interval);
+          if (musicLabel) musicLabel.textContent = 'Now playing';
+        }
+      }, 60);
+    }
   }
 
+  // Observe the #memories section — trigger player when it enters the viewport.
   var memoriesSection = document.getElementById('memories');
   var musicObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
       if (e.isIntersecting && !musicTriggered && !dismissed) {
         musicTriggered = true;
         musicPlayer.classList.add('visible');
-        if (isIOS) {
-          if (musicLabel) musicLabel.textContent = 'Tap ▶ to play';
-        } else {
-          setTimeout(tryPlay, 500);
+
+        if (playerReady) {
+          startMutedThenUnmute();
         }
+        // If the API isn't ready yet, onReady will call startMutedThenUnmute().
       }
     });
   }, { threshold: 0.1 });
+
   if (memoriesSection) musicObserver.observe(memoriesSection);
 
+  // Toggle play / pause
   musicToggle.addEventListener('click', function() {
     if (!ytPlayer) return;
     if (isPlaying) {
       ytPlayer.pauseVideo();
     } else {
-      if (musicLabel) musicLabel.textContent = 'Now playing';
+      // If the user hit pause and taps play again, restore full volume immediately.
+      ytPlayer.unMute();
       ytPlayer.setVolume(60);
       ytPlayer.playVideo();
+      if (musicLabel) musicLabel.textContent = 'Now playing';
     }
   });
 
+  // Dismiss player
   musicClose.addEventListener('click', function() {
     dismissed = true;
     musicPlayer.classList.remove('visible');
