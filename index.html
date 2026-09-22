@@ -987,7 +987,6 @@
   <a href="#" class="nav-logo">A &amp; O — 2026</a>
   <ul class="nav-links">
     <li><a href="#introduction">The Weekend</a></li>
-    <li><a href="#rsvp">RSVP</a></li>
     <li><a href="#points-of-interest">Explore Ronda</a></li>
     <li><a href="#memories">Memories</a></li>
     <li><a href="#faqs">FAQs</a></li>
@@ -1000,7 +999,6 @@
 <!-- MOBILE NAV DRAWER -->
 <div class="mobile-nav-drawer" id="mobileDrawer">
   <a href="#introduction" class="drawer-link">The Weekend</a>
-  <a href="#rsvp" class="drawer-link">RSVP</a>
   <a href="#points-of-interest" class="drawer-link">Explore Ronda</a>
   <a href="#memories" class="drawer-link">Memories</a>
   <a href="#faqs" class="drawer-link">FAQs</a>
@@ -1097,29 +1095,6 @@
 </section>
 
 <div class="divider">— con amor —</div>
-
-<!-- RSVP -->
-<section id="rsvp">
-  <div class="container">
-    <div class="rsvp-inner">
-      <div class="rsvp-intro">
-        <p class="section-label">RSVP</p>
-        <h2>Let us know you're coming</h2>
-        <p>We'd love to know you'll be joining us in Ronda. Please fill in the form <strong>at your earliest convenience</strong> so we can plan ahead.</p>
-        <p>If you have any questions or need help with travel, please contact us directly.</p>
-        <div class="rsvp-deadline">Respond as soon as possible, and no later than 1 July.</div>
-      </div>
-      <div class="rsvp-link-block">
-        <p>Click the link below to open our RSVP form. Please complete one form per guest.</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSegAbgzpZtCrnKrW9Vs4mtPBIV3ftAvW4GUUBX6ZPMRVWJGjQ/viewform?usp=publish-editor" target="_blank" rel="noopener" class="rsvp-cta-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Please RSVP here
-        </a>
-        <p class="rsvp-note">Opens in a new tab. Any issues? Email us at <a href="mailto:alexandoliviah@gmail.com" style="color:var(--terracotta);">alexandoliviah@gmail.com</a></p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- POINTS OF INTEREST -->
 <section id="points-of-interest">
@@ -1381,7 +1356,7 @@
       }
     });
   }, { threshold: 0.08 });
-  document.querySelectorAll('.intro-grid, .rsvp-inner, .poi-card, .faq-item, .album-photo, .day-block').forEach(el => {
+  document.querySelectorAll('.intro-grid, .poi-card, .faq-item, .album-photo, .day-block').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(28px)';
     el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
